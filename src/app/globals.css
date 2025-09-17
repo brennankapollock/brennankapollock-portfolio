@@ -1,26 +1,215 @@
 @import "tailwindcss";
 
+/* Light mode only */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+
+  /* Colors */
+  --color-bg: #ffffff;
+  --color-fg: #111111;
+  --color-muted: #6B7280; /* gray-500-ish */
+  --color-accent-primary: #0066FF;
+
+  /* Editorial accent colors inspired by Stedelijk */
+  --color-accent-yellow: #FFD700;
+  --color-accent-green: #00FF88;
+  --color-accent-red: #FF3B30;
+
+  /* Rules and spacing tokens */
+  --rule-thick: 8px;
+  --container-max: 80rem; /* ~1280px */
+
+  /* Font variables are hydrated by next/font in layout.
+     We alias geist/font vars to our naming here. */
+  --font-display: var(--font-display);
+  --font-geist-sans: var(--font-geist, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue);
+  --font-geist-mono: var(--font-geist-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Reset and base */
+html, body {
+  height: 100%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  /* Prevent system dark mode overrides */
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Remove any dark mode blocks (ensures only light) */
+/* If your previous stylesheet had prefers-color-scheme: dark, delete it. */
+
+/* Typography scale */
+.display-hero {
+  font-family: var(--font-display), serif;
+  /* Oversized editorial scale, with slight negative tracking and tight leading */
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  /* Massive responsive sizes inspired by Stedelijk */
+  font-size: clamp(4rem, 12vw + 1rem, 16rem);
+}
+
+.display-hero-xl {
+  font-family: var(--font-display), serif;
+  /* Ultra-large for main hero sections */
+  font-weight: 800;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  /* Even larger scale for major impact */
+  font-size: clamp(6rem, 15vw + 2rem, 20rem);
+}
+
+.display-xl {
+  font-family: var(--font-display), serif;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-size: clamp(2rem, 4vw + 1rem, 6rem);
+}
+
+.copy-lg {
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+/* Thick rule utility (Stedelijk-style bands) */
+.rule-thick {
+  border-top: var(--rule-thick) solid var(--color-fg);
+}
+
+/* Hairline divider for lists */
+.hr-hairline {
+  border-top: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+/* Link styles */
+.link {
+  color: var(--color-fg);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.link:hover {
+  color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+}
+
+/* Focus ring (accessible) */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-accent-primary);
+  border-radius: 2px;
+}
+
+/* Containers */
+.container-site {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-site {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Page transition helper (used by PageFade) */
+.page-fade-enter {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.page-fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-fade-enter { opacity: 1; transform: none; }
+  .page-fade-enter-active { transition: none; }
+}
+
+/* Marquee-like band styling (static for phase 1) */
+.band {
+  border-top: var(--rule-thick) solid var(--color-fg);
+  border-bottom: var(--rule-thick) solid var(--color-fg);
+  background: #fff;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.band-row {
+  display: inline-block;
+  margin-right: 2rem;
+  font-family: var(--font-display), serif;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 2.5rem);
+}
+
+/* Utility to crop/overscan headlines */
+.cropped {
+  overflow: hidden;
+}
+
+/* Editorial accent utilities */
+.accent-yellow {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-fg);
+}
+
+.accent-green {
+  background-color: var(--color-accent-green);
+  color: var(--color-fg);
+}
+
+.accent-red {
+  background-color: var(--color-accent-red);
+  color: white;
+}
+
+.text-accent-yellow {
+  color: var(--color-accent-yellow);
+}
+
+.text-accent-green {
+  color: var(--color-accent-green);
+}
+
+/* Editorial layout utilities */
+.hero-section {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .editorial-grid {
+    gap: 2rem;
+  }
 }
