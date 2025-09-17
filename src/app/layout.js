@@ -1,16 +1,14 @@
-import './globals.css';
+import "./globals.css";
 
-import { Bodoni_Moda } from 'next/font/google';
-import { GeistSans, GeistMono } from 'geist/font';
+import localFont from "next/font/local";
+import { GeistSans, GeistMono } from "geist/font";
 
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from "@/components/Header";
 
-const bodoni = Bodoni_Moda({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800', '900'],
-  display: 'swap',
-  variable: '--font-display',
+const printvetica = localFont({
+  src: "../fonts/Printvetica.otf",
+  display: "swap",
+  variable: "--font-display",
 });
 
 // geist/font exposes preset variables: --font-geist and --font-geist-mono
@@ -19,30 +17,29 @@ const geistSans = GeistSans;
 const geistMono = GeistMono;
 
 export const metadata = {
-  metadataBase: new URL('https://example.com'),
+  metadataBase: new URL("https://example.com"),
   title: {
-    default: 'Brennan Kapollock — Portfolio',
-    template: '%s — Brennan Kapollock',
+    default: "brennan k.a. pollock",
+    template: "%s — Brennan Kapollock",
   },
-  description: 'Designer & developer focused on editorial scale, clean typography, and thoughtful digital experiences.',
-  icons: { icon: '/favicon.ico' },
+  description: "engineer and artist based in venice beach",
+  icons: { icon: "/favicon.ico" },
 };
 
 export const viewport = {
-  themeColor: '#ffffff',
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${bodoni.variable} ${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${printvetica.variable} ${geistSans.variable} ${geistMono.variable}`}
+    >
       <body>
         <Header />
-        <main id="main" className="container-site">
-          {children}
-        </main>
-        <Footer />
+        <main id="main">{children}</main>
       </body>
     </html>
   );
 }
-
