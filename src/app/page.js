@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <div className="museum-layout">
+<div className="museum-layout">
       {/* Main Title - Edge to Edge */}
       <div className="museum-hero">
         <h1 className="museum-main-title">BRENNAN K.A. POLLOCK</h1>
