@@ -50,8 +50,8 @@ export default function BlogList() {
             <li key={post.id} className="border-b border-black/10">
               <div className="flex items-center gap-4 py-4 group">
                 <div className="w-28 text-sm text-gray-600 tabular-nums">{post.date}</div>
-                <div className="flex-1">
-                  <Link href={post.href} className="link inline-block">{post.name}</Link>
+                <div className="flex-1 min-w-0 overflow-hidden">
+                  <Link href={post.href} className="link blog-post-title">{post.name}</Link>
                 </div>
                 <div className="w-8 flex justify-end">
                   <button
