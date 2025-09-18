@@ -143,6 +143,13 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .page-fade-enter { opacity: 1; transform: none; }
   .page-fade-enter-active { transition: none; }
+
+  .blog-post-hero-title,
+  .reading-title {
+    transition: none;
+    transform: none;
+    filter: none;
+  }
 }
 
 /* Marquee-like band styling (static for phase 1) */
@@ -358,7 +365,7 @@ body {
 /* Blog Sidebar */
 .blog-sidebar {
   width: 280px;
-  background: #f8f9fa;
+  background: #ffffff;
   padding: 2rem 1.5rem;
   flex-shrink: 0;
   position: sticky;
@@ -606,6 +613,17 @@ body {
   /* Large, responsive hero similar to the reference */
   font-size: clamp(4rem, 12vw + 0.5rem, 12rem);
   margin: 0;
+  /* Animation prep */
+  transform-origin: left top;
+  transition: opacity 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+/* When reading, subtly scale/fade the hero to let the sidebar title take focus */
+.is-reading .blog-post-hero-title {
+  opacity: 0.6;
+  transform: scale(0.95);
 }
 
 /* Blog Post Two-Column Area */
@@ -627,7 +645,14 @@ body {
 .blog-post-main {
   flex: none;
   padding: 0;
-  max-width: 900px;
+  max-width: 1000px;
+}
+
+/* Invisible marker used for scroll trigger */
+.reading-sentinel {
+  position: relative;
+  width: 100%;
+  height: 1px;
 }
 
 /* Blog Post Metadata */
@@ -636,6 +661,38 @@ body {
   padding-top: 2rem;
   border-top: 1px solid #e1e5e9;
   max-width: 800px;
+}
+
+/* Compact reading title in sidebar */
+.reading-title {
+  position: sticky;
+  top: 4.5rem; /* matches .blog-post-aside sticky offset */
+  align-self: start;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  transform: translateX(-8px);
+  filter: blur(2px);
+  transition: opacity 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+              filter 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform, filter;
+  pointer-events: none;
+}
+
+.is-reading .reading-title {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+  pointer-events: auto;
+}
+
+.reading-title-text {
+  font-family: var(--font-display), serif;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  margin: 0;
 }
 
 .blog-metadata-section h3 {
@@ -705,8 +762,8 @@ body {
 /* Blog Post Main Content */
 .blog-post-main {
   flex: 1;
-  padding: 2rem 4rem;
-  max-width: 800px;
+  padding: 2rem 3rem;
+  max-width: 1000px;
   overflow-y: auto;
   height: 100%;
 }
@@ -768,13 +825,13 @@ body {
 }
 
 .blog-content-p {
-  font-size: 1rem;
+  font-size: 1.0625rem; /* ~17px */
   margin: 1rem 0;
   color: var(--color-fg);
 }
 
 .blog-content-li {
-  font-size: 1rem;
+  font-size: 1.0625rem; /* ~17px */
   margin: 0.5rem 0;
   margin-left: 1.5rem;
   color: var(--color-fg);
@@ -799,6 +856,11 @@ body {
   .blog-post-list,
   .blog-post-main {
     padding: 2rem;
+  }
+
+  /* Hide the sidebar compact title on small screens */
+  .reading-title {
+    display: none;
   }
 
   .blog-table-header,

@@ -1,5 +1,6 @@
 import { getPostBySlug, blogPosts } from '@/data/blogPosts';
 import BlogPostMetadata from '@/components/BlogPostMetadata';
+import ReadingTitle from '@/components/ReadingTitle';
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
@@ -19,14 +20,18 @@ export default async function BlogPostPage({ params }) {
   return (
     <div className="blog-post-layout">
       <div className="blog-post-hero">
-        <h1 className="blog-post-hero-title">{post.title}</h1>
+        <h1 className="blog-post-hero-title hero-title">{post.title}</h1>
       </div>
 
       <div className="blog-post-two-col">
         <aside className="blog-post-aside">
+          {/* Animated compact title that appears while reading */}
+          <ReadingTitle title={post.title} />
           <BlogPostMetadata post={post} />
         </aside>
         <main className="blog-post-main">
+          {/* Sentinel marks the start of the article body for scroll detection */}
+          <div id="reading-sentinel" className="reading-sentinel" />
           <div className="blog-post-content">
             {post.content.split('\n').map((paragraph, index) => {
               if (paragraph.trim() === '') return null;
