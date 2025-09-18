@@ -24,6 +24,7 @@ export default function Header() {
     <header className="museum-header" role="banner" aria-label="Site header">
       <nav className="museum-nav" aria-label="Primary">
         <div className="museum-nav-group museum-nav-left" aria-label="Site sections">
+          <Link href="/" aria-label="Home" className="museum-nav-link museum-brand">[bkap]</Link>
           {LEFT_NAV.map((item) => {
             const isActive = pathname === item.href;
             return (
