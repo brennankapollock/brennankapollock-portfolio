@@ -11,11 +11,10 @@ const LEFT_NAV = [
   { label: 'WHO?', href: '/about' },
 ];
 
-// TODO: replace placeholder URLs with real destinations once provided
 const SOCIAL_NAV = [
-  { label: 'YOUTUBE', href: 'https://example.com/youtube' },
-  { label: 'GITHUB', href: 'https://example.com/github' },
-  { label: 'MEETUPS', href: 'https://example.com/meetups' },
+  { label: 'YOUTUBE', href: 'https://youtube.com/@brennankapollock' },
+  { label: 'GITHUB', href: 'https://github.com/brennankapollock' },
+  { label: 'MEETUPS', href: 'https://lu.ma/brennankapollock' },
 ];
 
 export default function Header() {
