@@ -117,7 +117,7 @@ export default function BlogSidebar({ currentCategory = null, onCategorySelect =
             <span className="topic-arrow">
               {expandedFolders.has('topic') ? '▼' : '▶'}
             </span>
-            <span className="topic-icon">■</span>
+            <span className="topic-icon">📁</span>
             <span className="topic-name">Topic</span>
           </div>
 

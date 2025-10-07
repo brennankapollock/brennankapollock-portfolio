@@ -1085,15 +1085,16 @@ body {
 
 .blog-post-title {
     font-family: var(--font-geist-sans);
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 400;
     color: var(--color-fg);
     line-height: 1.4;
-    /* Keep titles on one line without visual ellipsis; they will be hard-cropped if needed */
+    /* Keep titles on one line with ellipsis */
     display: block;
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .blog-col-action {
@@ -1477,6 +1478,7 @@ body {
     overflow: visible;
     position: relative;
     white-space: nowrap;
+    text-align: center;
 }
 
 .museum-tagline {
