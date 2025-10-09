@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { usePathname } from 'next/navigation';
+import MobileMenu from './MobileMenu';
 
 const LEFT_NAV = [
   { label: 'WORDS', href: '/blog' },
@@ -31,7 +32,7 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 aria-current={isActive ? 'page' : undefined}
-                className={`museum-nav-link${isActive ? ' museum-nav-link--active' : ''}`}
+                className={`museum-nav-link museum-nav-link--desktop${isActive ? ' museum-nav-link--active' : ''}`}
               >
                 {item.label}
               </Link>
@@ -45,12 +46,13 @@ export default function Header() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="museum-nav-link"
+              className="museum-nav-link museum-nav-link--desktop"
             >
               {item.label}
             </a>
           ))}
         </div>
+        <MobileMenu />
       </nav>
     </header>
   );
