@@ -1,10 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
 import FlowingMenu from '@/components/FlowingMenu';
-import { blogPosts, getPostsByCategory } from '@/data/blogPosts';
+import { blogFileTree, blogPosts, getPostsByCategory } from '@/data/blogPosts';
 
 export default function BlogPostList({ selectedCategory = null }) {
   const filteredPosts = selectedCategory && Array.isArray(selectedCategory) && selectedCategory.length > 0
@@ -14,16 +11,6 @@ export default function BlogPostList({ selectedCategory = null }) {
     : selectedCategory && typeof selectedCategory === 'string'
     ? getPostsByCategory(selectedCategory)
     : blogPosts;
-
-  const pathname = usePathname();
-
-  const mobileNavLinks = [
-    { label: 'Blog', href: '/blog', type: 'internal' },
-    { label: 'Docs', href: 'https://read.cv/brennankapollock', type: 'external' },
-    { label: 'YouTube', href: 'https://youtube.com/@brennankapollock', type: 'external' },
-    { label: 'GitHub', href: 'https://github.com/brennankapollock', type: 'external' },
-    { label: 'Meetups', href: 'https://lu.ma/brennankapollock', type: 'external' },
-  ];
 
   const paletteByCategory = {
     'interface-design': {
@@ -52,6 +39,16 @@ export default function BlogPostList({ selectedCategory = null }) {
     },
   };
 
+  const resolveCategoryLabel = (categories = []) => {
+    if (!Array.isArray(categories) || categories.length === 0) return '';
+    const [primarySlug, secondarySlug] = categories;
+    const primaryNode = blogFileTree[primarySlug];
+    const primary = primaryNode?.displayName ?? primarySlug;
+    const secondary = secondarySlug ? primaryNode?.children?.[secondarySlug]?.displayName : null;
+    if (secondary) return `${primary} — ${secondary}`;
+    return primary;
+  };
+
   const sortedPosts = filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
   const menuItems = sortedPosts.map((post) => ({
     id: post.id,
@@ -59,6 +56,8 @@ export default function BlogPostList({ selectedCategory = null }) {
     text: post.title,
     marqueeText: post.title,
     date: post.date,
+    categoryLabel: resolveCategoryLabel(post.categories),
+    excerpt: post.excerpt?.trim(),
     marqueeBackground:
       paletteByCategory[post.categories?.[0]]?.marqueeBackground ?? 'linear-gradient(135deg, #f1f5f9, #94a3b8)',
     marqueeTextColor:
@@ -86,12 +85,20 @@ export default function BlogPostList({ selectedCategory = null }) {
         items={menuItems}
         renderItem={(item) => (
           <div className="words-row">
-            <div className="words-date">
-              <span className="words-date-marker" aria-hidden="true" />
-              <span className="words-date-text">{item.date}</span>
+            <div className="words-meta">
+              {item.categoryLabel && (
+                <span className="words-meta-category">{item.categoryLabel}</span>
+              )}
+              <div className="words-date">
+                <span className="words-date-marker" aria-hidden="true" />
+                <span className="words-date-text">{item.date}</span>
+              </div>
             </div>
-            <div className="words-title">{item.text}</div>
-            <div className="words-action">+</div>
+            <div className="words-content">
+              <div className="words-title">{item.text}</div>
+              {item.excerpt && <p className="words-excerpt">{item.excerpt}</p>}
+            </div>
+            <div className="words-action" aria-hidden="true">+</div>
           </div>
         )}
       />
