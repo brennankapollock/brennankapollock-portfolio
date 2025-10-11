@@ -116,24 +116,7 @@ export default function BlogSidebar({ currentCategory = null, onCategorySelect =
         <h3>/ FILTERS</h3>
       </div>
 
-      <div className="words-chip-panel" role="list">
-        {categoryEntries.map((entry) => {
-          const isSelected = selectedCategories.has(entry.id);
-          return (
-            <button
-              key={entry.id}
-              type="button"
-              className={`words-chip${isSelected ? ' words-chip--active' : ''}`}
-              onClick={() => toggleCategory(entry.id)}
-            >
-              <span>{entry.label}</span>
-              <span className="words-chip-count">({entry.count})</span>
-            </button>
-          );
-        })}
-      </div>
-
-      <div className="filter-section">
+      <div className="filter-section words-file-tree-desktop">
         <FileTree
           className="words-file-tree"
           initialExpandedItems={['topic']}
@@ -159,6 +142,34 @@ export default function BlogSidebar({ currentCategory = null, onCategorySelect =
             })}
           </Folder>
         </FileTree>
+      </div>
+
+      <div className="filter-section words-mobile-filter">
+        <div className="blog-sidebar-header">
+          <h3>/ FILTERS</h3>
+        </div>
+
+        <div className="blog-mobile-topic">
+          <Image src="/icons/folder-bitmap.svg" alt="Topic" width={18} height={14} unoptimized />
+          <span>Topic</span>
+        </div>
+
+        <div className="words-chip-panel" role="list">
+          {categoryEntries.map((entry) => {
+            const isSelected = selectedCategories.has(entry.id);
+            return (
+              <button
+                key={entry.id}
+                type="button"
+                className={`words-chip${isSelected ? ' words-chip--active' : ''}`}
+                onClick={() => toggleCategory(entry.id)}
+              >
+                <span>{entry.label}</span>
+                <span className="words-chip-count"> ({entry.count})</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

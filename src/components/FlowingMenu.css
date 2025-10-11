@@ -89,3 +89,27 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.25);
 }
+
+@media (max-width: 768px) {
+  .menu {
+    gap: 0;
+  }
+
+  .menu__item {
+    border-radius: 0;
+  }
+
+  .menu__item-link {
+    padding: 0;
+    border: none;
+  }
+
+  .menu__item-link:hover {
+    transform: none;
+    background: transparent;
+  }
+
+  .marquee {
+    display: none;
+  }
+}

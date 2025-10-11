@@ -1,5 +1,8 @@
 'use client';
 
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
 import FlowingMenu from '@/components/FlowingMenu';
 import { blogPosts, getPostsByCategory } from '@/data/blogPosts';
 
@@ -11,6 +14,16 @@ export default function BlogPostList({ selectedCategory = null }) {
     : selectedCategory && typeof selectedCategory === 'string'
     ? getPostsByCategory(selectedCategory)
     : blogPosts;
+
+  const pathname = usePathname();
+
+  const mobileNavLinks = [
+    { label: 'Blog', href: '/blog', type: 'internal' },
+    { label: 'Docs', href: 'https://read.cv/brennankapollock', type: 'external' },
+    { label: 'YouTube', href: 'https://youtube.com/@brennankapollock', type: 'external' },
+    { label: 'GitHub', href: 'https://github.com/brennankapollock', type: 'external' },
+    { label: 'Meetups', href: 'https://lu.ma/brennankapollock', type: 'external' },
+  ];
 
   const paletteByCategory = {
     'interface-design': {
