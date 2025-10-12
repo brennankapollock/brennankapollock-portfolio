@@ -1249,6 +1249,7 @@ body {
         position: static;
         width: 100%;
         height: auto;
+        min-height: 4rem;
         padding: 0;
         border: none;
         border-radius: 0;
@@ -1392,6 +1393,7 @@ body {
         padding: 0;
         border-top: none;
         border-bottom: 1px dotted #cbd5e1;
+        min-height: 4rem;
     }
 
     .words-mobile-filter-row {
@@ -1428,9 +1430,10 @@ body {
     }
 
     .words-chip--active {
-        background: transparent;
+        background: #fef3c7;
         font-weight: 400;
         color: #000000;
+        border-left: 1px solid #fbbf24;
     }
 
     .blog-post-list {
