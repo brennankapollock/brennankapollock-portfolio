@@ -41,11 +41,9 @@ export default function BlogPostList({ selectedCategory = null }) {
 
   const resolveCategoryLabel = (categories = []) => {
     if (!Array.isArray(categories) || categories.length === 0) return '';
-    const [primarySlug, secondarySlug] = categories;
+    const [primarySlug] = categories;
     const primaryNode = blogFileTree[primarySlug];
     const primary = primaryNode?.displayName ?? primarySlug;
-    const secondary = secondarySlug ? primaryNode?.children?.[secondarySlug]?.displayName : null;
-    if (secondary) return `${primary} — ${secondary}`;
     return primary;
   };
 
