@@ -6,19 +6,56 @@ import { gsap } from 'gsap';
 
 import './FlowingMenu.css';
 
+// Curated palette of distinct, vibrant editorial colors
+const HOVER_COLORS = [
+  '#ffd700', // bright yellow
+  '#87ceeb', // sky blue
+  '#98fb98', // pale green
+  '#ffb6c1', // light pink
+  '#dda0dd', // plum
+  '#ffa07a', // light salmon
+  '#f0e68c', // khaki
+  '#b0e0e6', // powder blue
+  '#ffb347', // pastel orange
+  '#c5a3ff', // light purple
+];
+
 function FlowingMenu({ items = [], renderItem }) {
+  // Deterministically assign colors based on item ID or index to avoid hydration issues
+  const getColorForItem = (item, idx) => {
+    // Use item ID hash if available, otherwise use index
+    const seed = item.id ? hashString(item.id) : idx;
+    return HOVER_COLORS[seed % HOVER_COLORS.length];
+  };
+
   return (
     <div className="menu-wrap">
       <nav className="menu">
         {items.map((item, idx) => (
-          <MenuItem key={item.id ?? idx} item={item} renderItem={renderItem} />
+          <MenuItem 
+            key={item.id ?? idx} 
+            item={item} 
+            renderItem={renderItem}
+            hoverColor={getColorForItem(item, idx)}
+          />
         ))}
       </nav>
     </div>
   );
 }
 
-function MenuItem({ item, renderItem }) {
+// Simple string hash function for deterministic color selection
+function hashString(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+}
+
+function MenuItem({ item, renderItem, hoverColor }) {
   const itemRef = React.useRef(null);
   const marqueeRef = React.useRef(null);
   const marqueeInnerRef = React.useRef(null);
@@ -81,7 +118,11 @@ function MenuItem({ item, renderItem }) {
   };
 
   return (
-    <div className="menu__item" ref={itemRef}>
+    <div 
+      className="menu__item" 
+      ref={itemRef}
+      style={{ '--hover-color': hoverColor }}
+    >
       <Link
         className="menu__item-link"
         href={item.link}

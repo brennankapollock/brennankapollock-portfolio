@@ -206,6 +206,17 @@ body {
         transform: none;
         box-shadow: none;
     }
+
+    /* Disable words page animations for accessibility */
+    .blog-main-title,
+    .blog-post-count,
+    .words-table-header,
+    .menu__item {
+        opacity: 1;
+        transform: none;
+        animation: none;
+        transition: none;
+    }
 }
 
 /* Marquee-like band styling (static for phase 1) */
@@ -886,6 +897,7 @@ body {
     transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+    display: none; /* Hidden on desktop by default */
 }
 
 .mobile-menu-inner {
@@ -1000,6 +1012,7 @@ body {
     background: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     animation: fadeIn 300ms ease;
+    display: none; /* Hidden on desktop by default */
 }
 
 @keyframes fadeIn {
@@ -1027,6 +1040,15 @@ body {
     
     /* Show mobile menu toggle */
     .mobile-menu-toggle {
+        display: block;
+    }
+    
+    /* Show mobile menu panel and overlay on mobile */
+    .mobile-menu-panel {
+        display: block;
+    }
+    
+    .mobile-menu-overlay {
         display: block;
     }
     
@@ -1586,6 +1608,10 @@ body {
     line-height: 0.9;
     margin: 0;
     color: var(--color-fg);
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    animation: wordsPageTitleReveal 800ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 100ms;
 }
 
 .blog-post-count {
@@ -1593,6 +1619,9 @@ body {
     font-size: 1rem;
     color: #6b7280;
     font-weight: 400;
+    opacity: 0;
+    animation: wordsPageCountFade 600ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    animation-delay: 400ms;
 }
 
 
@@ -1606,6 +1635,10 @@ body {
         margin-bottom: 1rem;
         padding-left: 1rem;
         padding-right: 1rem;
+        opacity: 0;
+        transform: translateY(-8px);
+        animation: wordsPageHeaderSlide 500ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        animation-delay: 600ms;
     }
 
     .words-header-label {
@@ -1615,6 +1648,27 @@ body {
         color: #6b7280;
         letter-spacing: 0.05em;
         text-transform: uppercase;
+    }
+}
+
+/* Words Page Animation Keyframes */
+@keyframes wordsPageTitleReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes wordsPageCountFade {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes wordsPageHeaderSlide {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

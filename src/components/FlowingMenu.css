@@ -5,13 +5,36 @@
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0;
 }
 
 .menu__item {
   position: relative;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: menuItemFadeIn 500ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Staggered animation delays for each item */
+.menu__item:nth-child(1) { animation-delay: 700ms; }
+.menu__item:nth-child(2) { animation-delay: 750ms; }
+.menu__item:nth-child(3) { animation-delay: 800ms; }
+.menu__item:nth-child(4) { animation-delay: 850ms; }
+.menu__item:nth-child(5) { animation-delay: 900ms; }
+.menu__item:nth-child(6) { animation-delay: 950ms; }
+.menu__item:nth-child(7) { animation-delay: 1000ms; }
+.menu__item:nth-child(8) { animation-delay: 1050ms; }
+.menu__item:nth-child(9) { animation-delay: 1100ms; }
+.menu__item:nth-child(10) { animation-delay: 1150ms; }
+.menu__item:nth-child(n+11) { animation-delay: 1200ms; }
+
+@keyframes menuItemFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .menu__item-link {
@@ -20,9 +43,9 @@
   padding: 1.5rem 1rem;
   text-decoration: none;
   color: inherit;
-  transition: transform 200ms ease;
+  transition: background-color 250ms ease;
   border-bottom: 1px solid #f3f4f6;
-  border-radius: 8px;
+  border-radius: 0;
 }
 .menu__item:last-child .menu__item-link {
   border-bottom: none;
@@ -34,9 +57,11 @@
   box-shadow: 0 0 0 2px var(--color-accent-primary);
 }
 
-.menu__item-link:hover {
-  transform: translateX(12px);
-  background: #f8f9fa;
+/* Desktop hover effect with random colors */
+@media (min-width: 769px) {
+  .menu__item-link:hover {
+    background: var(--hover-color, #f8f9fa);
+  }
 }
 
 .marquee {
