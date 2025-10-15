@@ -12,23 +12,27 @@
   position: relative;
   overflow: hidden;
   border-radius: 0;
+}
+
+/* Animated mode - only apply animation when not instant */
+.menu:not(.menu--instant) .menu__item {
   opacity: 0;
   transform: translateY(20px);
   animation: menuItemFadeIn 500ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-/* Staggered animation delays for each item */
-.menu__item:nth-child(1) { animation-delay: 700ms; }
-.menu__item:nth-child(2) { animation-delay: 750ms; }
-.menu__item:nth-child(3) { animation-delay: 800ms; }
-.menu__item:nth-child(4) { animation-delay: 850ms; }
-.menu__item:nth-child(5) { animation-delay: 900ms; }
-.menu__item:nth-child(6) { animation-delay: 950ms; }
-.menu__item:nth-child(7) { animation-delay: 1000ms; }
-.menu__item:nth-child(8) { animation-delay: 1050ms; }
-.menu__item:nth-child(9) { animation-delay: 1100ms; }
-.menu__item:nth-child(10) { animation-delay: 1150ms; }
-.menu__item:nth-child(n+11) { animation-delay: 1200ms; }
+/* Staggered animation delays for each item (only in animated mode) */
+.menu:not(.menu--instant) .menu__item:nth-child(1) { animation-delay: 700ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(2) { animation-delay: 750ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(3) { animation-delay: 800ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(4) { animation-delay: 850ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(5) { animation-delay: 900ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(6) { animation-delay: 950ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(7) { animation-delay: 1000ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(8) { animation-delay: 1050ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(9) { animation-delay: 1100ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(10) { animation-delay: 1150ms; }
+.menu:not(.menu--instant) .menu__item:nth-child(n+11) { animation-delay: 1200ms; }
 
 @keyframes menuItemFadeIn {
   to {

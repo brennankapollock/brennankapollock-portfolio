@@ -1,11 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BlogSidebar from '@/components/BlogSidebar';
 import BlogPostList from '@/components/BlogPostList';
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState([]);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  useEffect(() => {
+    setIsInitialLoad(false);
+  }, []);
 
   return (
     <div className="blog-layout">
@@ -14,7 +19,10 @@ export default function BlogPage() {
           currentCategory={selectedCategory}
           onCategorySelect={setSelectedCategory}
         />
-        <BlogPostList selectedCategory={selectedCategory} />
+        <BlogPostList 
+          selectedCategory={selectedCategory}
+          skipAnimation={!isInitialLoad}
+        />
       </div>
     </div>
   );

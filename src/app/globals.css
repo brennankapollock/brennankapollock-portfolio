@@ -1090,7 +1090,9 @@ body {
 .blog-container {
     display: flex;
     max-width: 100vw;
+    height: calc(100vh - 4rem);
     min-height: calc(100vh - 4rem);
+    position: relative;
 }
 
 /* Blog Sidebar */
@@ -1098,11 +1100,14 @@ body {
     width: 280px;
     background: #ffffff;
     padding: 2rem 1.5rem;
-    flex-shrink: 0;
+    flex: 0 0 280px;
     position: sticky;
     top: 4rem;
     height: calc(100vh - 4rem);
+    max-height: calc(100vh - 4rem);
     overflow-y: auto;
+    transform: translateZ(0);
+    contain: layout style;
 }
 
 .blog-sidebar-header h3 {
@@ -1129,6 +1134,7 @@ body {
 /* Filter Section */
 .filter-section {
     margin-top: 1rem;
+    position: relative;
 }
 
 .filter-section.words-mobile-filter {
@@ -1185,6 +1191,12 @@ body {
     flex-direction: column;
     gap: 0.75rem;
     padding-right: 0.5rem;
+}
+
+/* Disable accordion animations to prevent sidebar sliding */
+.words-file-tree [data-state="open"],
+.words-file-tree [data-state="closed"] {
+    animation: none !important;
 }
 
 .words-folder {
@@ -1624,10 +1636,11 @@ body {
 .blog-post-list {
     flex: 1;
     padding: 2rem 3rem;
-    overflow-y: auto;
+    overflow-y: visible;
     /* Guard against hover padding/margins causing horizontal scroll */
     overflow-x: hidden;
     font-family: var(--font-words);
+    min-height: calc(100vh - 4rem);
 }
 
 .blog-list-header {

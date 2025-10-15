@@ -3,7 +3,7 @@
 import FlowingMenu from '@/components/FlowingMenu';
 import { blogFileTree, blogPosts, getPostsByCategory } from '@/data/blogPosts';
 
-export default function BlogPostList({ selectedCategory = null }) {
+export default function BlogPostList({ selectedCategory = null, skipAnimation = false }) {
   const filteredPosts = selectedCategory && Array.isArray(selectedCategory) && selectedCategory.length > 0
     ? blogPosts.filter(post =>
         selectedCategory.some(category => post.categories.includes(category))
@@ -81,6 +81,7 @@ export default function BlogPostList({ selectedCategory = null }) {
       </div>
       <FlowingMenu
         items={menuItems}
+        skipAnimation={skipAnimation}
         renderItem={(item) => (
           <div className="words-row">
             <div className="words-meta">
