@@ -3,12 +3,12 @@ export const blogFileTree = {
   "interface-design": {
     type: "folder",
     name: "interface-design",
-    displayName: "Interface Design",
+    displayName: "Philosophy",
     children: {
       "editorial-interfaces": {
         type: "folder",
         name: "editorial-interfaces",
-        displayName: "Editorial Interfaces",
+        displayName: "Engineering",
         children: {}
       },
       "typography": {

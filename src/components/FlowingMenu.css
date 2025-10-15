@@ -116,12 +116,22 @@
 }
 
 @media (max-width: 768px) {
+  .menu-wrap {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
   .menu {
     gap: 0;
+    margin-top: 0;
+    padding-top: 0;
   }
 
   .menu__item {
     border-radius: 0;
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
   }
 
   .menu__item-link {
