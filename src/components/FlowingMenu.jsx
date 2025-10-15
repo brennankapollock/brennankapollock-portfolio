@@ -20,7 +20,7 @@ const HOVER_COLORS = [
   '#c5a3ff', // light purple
 ];
 
-function FlowingMenu({ items = [], renderItem }) {
+function FlowingMenu({ items = [], renderItem, skipAnimation = false }) {
   // Deterministically assign colors based on item ID or index to avoid hydration issues
   const getColorForItem = (item, idx) => {
     // Use item ID hash if available, otherwise use index
@@ -30,7 +30,7 @@ function FlowingMenu({ items = [], renderItem }) {
 
   return (
     <div className="menu-wrap">
-      <nav className="menu">
+      <nav className={`menu${skipAnimation ? ' menu--instant' : ''}`}>
         {items.map((item, idx) => (
           <MenuItem 
             key={item.id ?? idx} 

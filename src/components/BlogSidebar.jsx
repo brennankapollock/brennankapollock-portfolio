@@ -132,7 +132,10 @@ export default function BlogSidebar({ currentCategory = null, onCategorySelect =
                   value={entry.id}
                   className="words-tree-entry"
                   fileIcon={<BitmapCheckbox checked={isSelected} />}
-                  onClick={() => toggleCategory(entry.id)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    toggleCategory(entry.id);
+                  }}
                 >
                   <span className="words-tree-name">{entry.label}</span>
                   <span className="words-tree-count">({entry.count})</span>
