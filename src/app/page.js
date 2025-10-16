@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "Home",
@@ -43,6 +44,31 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+          
+          {/* Mobile Card Layout */}
+          <div className="museum-card-label">
+            <span className="museum-card-number">01</span>
+            <span>NOW BUILDING</span>
+          </div>
+          
+          <div className="museum-card-image-container">
+            <Image
+              src="/home-images/Image.png"
+              alt="Sun Rot Studios"
+              fill
+              className="museum-inline-image-mobile"
+              sizes="100vw"
+            />
+          </div>
+          
+          <Link href="/work" className="museum-card-content">
+            <div className="museum-line-link-mobile">
+              SUN ROT STUDIOS <span>→</span>
+            </div>
+            <p className="museum-card-subtitle">
+              Explore current work and projects
+            </p>
+          </Link>
         </div>
 
         <div className="museum-exhibition-line">
@@ -68,6 +94,31 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+          
+          {/* Mobile Card Layout */}
+          <div className="museum-card-label">
+            <span className="museum-card-number">02</span>
+            <span>NOW WRITING</span>
+          </div>
+          
+          <div className="museum-card-image-container">
+            <Image
+              src="/home-images/sexy marvin gaye.jpg"
+              alt="Undraped in Clover"
+              fill
+              className="museum-inline-image-mobile"
+              sizes="100vw"
+            />
+          </div>
+          
+          <Link href="/blog" className="museum-card-content">
+            <div className="museum-line-link-mobile">
+              UNDRAPED IN CLOVER <span>→</span>
+            </div>
+            <p className="museum-card-subtitle">
+              Read thoughts and reflections
+            </p>
+          </Link>
         </div>
 
         <div className="museum-exhibition-line">
@@ -93,6 +144,31 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+          
+          {/* Mobile Card Layout */}
+          <div className="museum-card-label">
+            <span className="museum-card-number">03</span>
+            <span>NOW COLLECTING</span>
+          </div>
+          
+          <div className="museum-card-image-container">
+            <Image
+              src="/home-images/woman.png"
+              alt="Sh*t I'm Into & Inspired By"
+              fill
+              className="museum-inline-image-mobile"
+              sizes="100vw"
+            />
+          </div>
+          
+          <Link href="/stash" className="museum-card-content">
+            <div className="museum-line-link-mobile">
+              SH*T I'M INTO & INSPIRED BY <span>→</span>
+            </div>
+            <p className="museum-card-subtitle">
+              Browse inspiration and interests
+            </p>
+          </Link>
         </div>
       </div>
     </div>

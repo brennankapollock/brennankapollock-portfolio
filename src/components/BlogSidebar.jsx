@@ -21,7 +21,6 @@ function BitmapCheckbox({ checked }) {
 
 export default function BlogSidebar({ currentCategory = null, onCategorySelect = null }) {
   const [selectedCategories, setSelectedCategories] = useState(new Set(currentCategory ?? []));
-  const audioCtxRef = useRef(null);
   const pendingNotifyRef = useRef(null);
   const skipNotifyRef = useRef(false);
   const fileTree = useMemo(() => populateFileTree(), []);
@@ -45,56 +44,17 @@ export default function BlogSidebar({ currentCategory = null, onCategorySelect =
     setSelectedCategories(new Set(categories));
   }, [currentCategory]);
 
-  const playCheckboxSound = useCallback(() => {
-    if (typeof window === 'undefined') return;
-    try {
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContextClass) return;
-      if (!audioCtxRef.current || audioCtxRef.current.state === 'closed') {
-        audioCtxRef.current = new AudioContextClass();
+  const toggleCategory = useCallback((category) => {
+    setSelectedCategories((prev) => {
+      const next = new Set(prev);
+      if (next.has(category)) {
+        next.delete(category);
+      } else {
+        next.add(category);
       }
-      const ctx = audioCtxRef.current;
-      if (ctx.state === 'suspended') {
-        ctx.resume();
-      }
-      const oscillator = ctx.createOscillator();
-      const gain = ctx.createGain();
-      oscillator.type = 'square';
-      oscillator.frequency.setValueAtTime(220, ctx.currentTime);
-      gain.gain.setValueAtTime(0.06, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.09);
-      oscillator.connect(gain);
-      gain.connect(ctx.destination);
-      oscillator.start();
-      oscillator.stop(ctx.currentTime + 0.1);
-    } catch (error) {
-      console.error('Failed to play checkbox sound', error);
-    }
-  }, []);
-
-  const toggleCategory = useCallback(
-    (category) => {
-      setSelectedCategories((prev) => {
-        const next = new Set(prev);
-        if (next.has(category)) {
-          next.delete(category);
-        } else {
-          next.add(category);
-          playCheckboxSound();
-        }
-        pendingNotifyRef.current = Array.from(next);
-        return next;
-      });
-    },
-    [playCheckboxSound],
-  );
-
-  useEffect(() => {
-    return () => {
-      if (audioCtxRef.current) {
-        audioCtxRef.current.close().catch(() => {});
-      }
-    };
+      pendingNotifyRef.current = Array.from(next);
+      return next;
+    });
   }, []);
 
   useEffect(() => {
