@@ -1176,9 +1176,11 @@ body {
     white-space: nowrap;
 }
 
-.words-chip:hover {
-    background: rgba(226, 232, 240, 0.6);
-    border-color: rgba(15, 23, 42, 0.16);
+@media (hover: hover) {
+    .words-chip:hover {
+        background: rgba(226, 232, 240, 0.6);
+        border-color: rgba(15, 23, 42, 0.16);
+    }
 }
 
 .words-chip--active {
@@ -2342,6 +2344,14 @@ body {
     color: var(--color-accent-primary);
 }
 
+/* Mobile card elements - hidden on desktop */
+.museum-card-label,
+.museum-card-image-container,
+.museum-card-content,
+.museum-line-link-mobile {
+    display: none;
+}
+
 /* Marquee Animation System */
 .museum-marquee {
     width: 100%;
@@ -2411,7 +2421,7 @@ body {
         /* Change from flex to block for mobile to allow natural height */
         display: block !important;
         /* Add padding at bottom to enable scroll for browser chrome dismissal */
-        padding-bottom: 100px !important;
+        padding-bottom: 20px !important;
     }
     
     .museum-exhibitions {
@@ -2448,46 +2458,94 @@ body {
     }
 
     .museum-separator {
-        height: 3px;
-        margin: 1vh 0 0;
+        display: none;
     }
 
     .museum-exhibition-line {
         padding: 0;
         flex: 1;
-        font-size: clamp(10vw, 16vw, 20vw);
+        font-size: 1rem;
         min-height: 0;
         display: flex;
-        align-items: center;
-        border-bottom: 3px solid var(--color-fg);
-    }
-
-    .museum-exhibition-line:last-child {
+        flex-direction: column;
+        align-items: stretch;
         border-bottom: none;
     }
 
+    /* Hide marquee on mobile */
     .museum-marquee {
+        display: none;
+    }
+
+    /* Show and style card elements on mobile */
+    .museum-card-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 1.25rem;
+        font-family: var(--font-mono), monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.02);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .museum-card-number {
+        font-weight: 700;
+        opacity: 0.4;
+    }
+
+    .museum-card-image-container {
+        display: block;
         width: 100%;
-        padding: 0 3vw;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        position: relative;
+        background: #f5f5f5;
     }
 
-    .museum-marquee-content {
-        animation-duration: 15s;
-        gap: 2rem;
+    .museum-inline-image-mobile {
+        object-fit: cover;
     }
 
-    .museum-exhibition-line:hover .museum-marquee-content {
-        animation-duration: 8s;
+    .museum-card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1.5rem 1.25rem 2rem;
+        text-decoration: none;
+        transition: background-color 150ms ease;
     }
 
-    .museum-inline-image {
-        width: 35vw;
-        height: 22vw;
-        margin: 0 1rem;
+    .museum-card-content:active {
+        background: rgba(0, 0, 0, 0.03);
     }
 
-    .museum-line-text {
-        white-space: nowrap;
+    .museum-line-link-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-family: var(--font-display), sans-serif;
+        font-weight: 900;
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+        color: var(--color-fg);
+        line-height: 1.1;
+        transition: color 200ms ease;
+    }
+
+    .museum-card-content:active .museum-line-link-mobile {
+        color: var(--color-accent-primary);
+    }
+
+    .museum-card-subtitle {
+        font-family: var(--font-sans), sans-serif;
+        font-size: 0.9rem;
+        color: var(--color-fg);
+        opacity: 0.6;
+        margin: 0;
+        line-height: 1.4;
     }
 }
 
