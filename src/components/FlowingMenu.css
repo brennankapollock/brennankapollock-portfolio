@@ -10,8 +10,15 @@
 
 .menu__item {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   border-radius: 0;
+}
+
+/* Desktop only overflow hidden for marquee effect */
+@media (min-width: 769px) {
+  .menu__item {
+    overflow: hidden;
+  }
 }
 
 /* Animated mode - only apply animation when not instant */
@@ -123,12 +130,18 @@
   .menu-wrap {
     margin-top: 0;
     padding-top: 0;
+    overflow-x: hidden;
+    max-width: 100%;
+    width: 100%;
   }
 
   .menu {
     gap: 0;
     margin-top: 0;
     padding-top: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
   .menu__item {
@@ -136,11 +149,17 @@
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .menu__item-link {
     padding: 0;
     border: none;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 
   .menu__item-link:hover {
