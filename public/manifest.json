@@ -1,0 +1,17 @@
+{
+  "name": "Portfolio Admin",
+  "short_name": "Admin",
+  "description": "Content management for portfolio",
+  "start_url": "/admin",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
