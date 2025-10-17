@@ -66,10 +66,7 @@ const FileTree = forwardRef(
     const expandSpecificTargetedElements = useCallback(
       (elementsList, selectId) => {
         if (!elementsList || !selectId) return;
-        const findParent = (
-          currentElement,
-          currentPath = [],
-        ) => {
+        const findParent = (currentElement, currentPath = []) => {
           const isSelectable = currentElement.isSelectable ?? true;
           const newPath = [...currentPath, currentElement.id];
           if (currentElement.id === selectId) {
@@ -134,7 +131,7 @@ const FileTree = forwardRef(
               defaultValue={expandedItems}
               value={expandedItems}
               className="flex flex-col gap-1"
-            onValueChange={(value) => setExpandedItems(value)}
+              onValueChange={(value) => setExpandedItems(value)}
               dir={direction}
             >
               {children}
@@ -288,7 +285,10 @@ const File = forwardRef(
 File.displayName = "File";
 
 const CollapseButton = forwardRef(
-  ({ className, elements = [], expandAll = false, children, ...props }, ref) => {
+  (
+    { className, elements = [], expandAll = false, children, ...props },
+    ref,
+  ) => {
     const { expandedItems, setExpandedItems } = useFileTree();
 
     const expendAllFileTree = useCallback(

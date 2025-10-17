@@ -12,12 +12,9 @@ import { useMemo } from "react";
 export default function StashToolbar({ value, onChange, itemsCount }) {
   const categories = useMemo(
     () => ["music", "books", "films", "art", "quotes"],
-    []
+    [],
   );
-  const types = useMemo(
-    () => ["image", "link", "text", "video"],
-    []
-  );
+  const types = useMemo(() => ["image", "link", "text", "video"], []);
   const sortOptions = useMemo(
     () => [
       { value: "newest", label: "Newest" },
@@ -25,7 +22,7 @@ export default function StashToolbar({ value, onChange, itemsCount }) {
       { value: "title", label: "Title A–Z" },
       { value: "type", label: "Type" },
     ],
-    []
+    [],
   );
 
   const toggleInArray = (arr, item) => {
@@ -131,7 +128,9 @@ export default function StashToolbar({ value, onChange, itemsCount }) {
           </div>
 
           <div className="stash-sort">
-            <label htmlFor="stash-sort" className="sr-only">Sort</label>
+            <label htmlFor="stash-sort" className="sr-only">
+              Sort
+            </label>
             <select
               id="stash-sort"
               value={value.sort}
@@ -148,7 +147,11 @@ export default function StashToolbar({ value, onChange, itemsCount }) {
           </div>
 
           {hasActive && (
-            <button type="button" className="chip chip--ghost" onClick={handleClearAll}>
+            <button
+              type="button"
+              className="chip chip--ghost"
+              onClick={handleClearAll}
+            >
               CLEAR
             </button>
           )}

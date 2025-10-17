@@ -9,48 +9,48 @@ export const blogFileTree = {
         type: "folder",
         name: "editorial-interfaces",
         displayName: "Engineering",
-        children: {}
+        children: {},
       },
-      "typography": {
+      typography: {
         type: "folder",
         name: "typography",
         displayName: "Typography",
-        children: {}
+        children: {},
       },
       "layout-systems": {
         type: "folder",
         name: "layout-systems",
         displayName: "Layout Systems",
-        children: {}
-      }
-    }
+        children: {},
+      },
+    },
   },
-  "development": {
+  development: {
     type: "folder",
     name: "development",
     displayName: "Development",
     children: {
-      "react": {
+      react: {
         type: "folder",
         name: "react",
         displayName: "React",
-        children: {}
+        children: {},
       },
-      "css": {
+      css: {
         type: "folder",
         name: "css",
         displayName: "CSS",
-        children: {}
+        children: {},
       },
-      "performance": {
+      performance: {
         type: "folder",
         name: "performance",
         displayName: "Performance",
-        children: {}
-      }
-    }
+        children: {},
+      },
+    },
   },
-  "process": {
+  process: {
     type: "folder",
     name: "process",
     displayName: "Process",
@@ -59,29 +59,29 @@ export const blogFileTree = {
         type: "folder",
         name: "design-systems",
         displayName: "Design Systems",
-        children: {}
+        children: {},
       },
-      "workflow": {
+      workflow: {
         type: "folder",
         name: "workflow",
         displayName: "Workflow",
-        children: {}
-      }
-    }
+        children: {},
+      },
+    },
   },
-  "culture": {
+  culture: {
     type: "folder",
     name: "culture",
     displayName: "Culture",
     children: {
-      "art": {
+      art: {
         type: "folder",
         name: "art",
         displayName: "Art",
-        children: {}
-      }
-    }
-  }
+        children: {},
+      },
+    },
+  },
 };
 
 export const blogPosts = [
@@ -93,7 +93,8 @@ export const blogPosts = [
     author: "Brennan K.A. Pollock",
     readingTime: "8 min read",
     categories: ["interface-design", "editorial-interfaces"],
-    excerpt: "How digital publishing platforms can learn from print design traditions while embracing modern interaction patterns.",
+    excerpt:
+      "How digital publishing platforms can learn from print design traditions while embracing modern interaction patterns.",
     content: `
 # Editorial Interfaces: Rethinking modern publishing platforms
 
@@ -127,7 +128,7 @@ Modern editorial interfaces should bridge digital flexibility with typographic r
 4. Enable experimentation within constraints
 
 The future of digital publishing lies not in more features, but in better understanding of how content and form interact.
-    `
+    `,
   },
   {
     id: "typography-systems-scale",
@@ -137,7 +138,8 @@ The future of digital publishing lies not in more features, but in better unders
     author: "Brennan K.A. Pollock",
     readingTime: "5 min read",
     categories: ["interface-design", "typography"],
-    excerpt: "Creating typographic systems that maintain rhythm and hierarchy across different contexts and screen sizes.",
+    excerpt:
+      "Creating typographic systems that maintain rhythm and hierarchy across different contexts and screen sizes.",
     content: `
 # Typography Systems: Building scales that breathe
 
@@ -163,7 +165,7 @@ Rather than fixed pixel values, modern typography systems should be built on:
 **Semantic hierarchy**: Meaning-driven rather than arbitrary sizing
 
 This approach creates typography that feels both systematic and organic.
-    `
+    `,
   },
   {
     id: "react-component-philosophy",
@@ -173,7 +175,8 @@ This approach creates typography that feels both systematic and organic.
     author: "Brennan K.A. Pollock",
     readingTime: "6 min read",
     categories: ["development", "react"],
-    excerpt: "Building flexible, maintainable component architectures through thoughtful composition patterns.",
+    excerpt:
+      "Building flexible, maintainable component architectures through thoughtful composition patterns.",
     content: `
 # React Component Philosophy: Composition over inheritance
 
@@ -209,7 +212,7 @@ Component composition aligns naturally with design system thinking:
 4. **Page layouts**: Full implementations
 
 This layered approach creates systems that are both consistent and adaptable.
-    `
+    `,
   },
   {
     id: "css-architecture-scale",
@@ -219,7 +222,8 @@ This layered approach creates systems that are both consistent and adaptable.
     author: "Brennan K.A. Pollock",
     readingTime: "7 min read",
     categories: ["development", "css"],
-    excerpt: "Architectural approaches to CSS that maintain clarity and performance as projects grow.",
+    excerpt:
+      "Architectural approaches to CSS that maintain clarity and performance as projects grow.",
     content: `
 # CSS Architecture: Scaling styles without chaos
 
@@ -257,7 +261,7 @@ The best CSS architecture depends on:
 - Design system maturity
 
 No single approach works for every project, but clear patterns always beat ad-hoc solutions.
-    `
+    `,
   },
   {
     id: "design-systems-documentation",
@@ -267,7 +271,8 @@ No single approach works for every project, but clear patterns always beat ad-ho
     author: "Brennan K.A. Pollock",
     readingTime: "4 min read",
     categories: ["process", "design-systems"],
-    excerpt: "Why design system documentation deserves the same attention as the components themselves.",
+    excerpt:
+      "Why design system documentation deserves the same attention as the components themselves.",
     content: `
 # Design Systems: Documentation as a design problem
 
@@ -302,7 +307,7 @@ The best documentation evolves with the system:
 4. **Context**: Decision rationale preserved over time
 
 Documentation is not separate from the design system—it is the design system.
-    `
+    `,
   },
   {
     id: "performance-perceived-real",
@@ -312,7 +317,8 @@ Documentation is not separate from the design system—it is the design system.
     author: "Brennan K.A. Pollock",
     readingTime: "6 min read",
     categories: ["development", "performance"],
-    excerpt: "Understanding how user perception of speed differs from technical metrics and optimizing for both.",
+    excerpt:
+      "Understanding how user perception of speed differs from technical metrics and optimizing for both.",
     content: `
 # Performance: The gap between perceived and measured speed
 
@@ -349,7 +355,7 @@ Acknowledge user actions immediately.
 ## Balanced Approach
 
 The best performance strategy addresses both technical metrics and user perception. Fast loading times matter, but so does the feeling of speed throughout the entire interaction.
-    `
+    `,
   },
   {
     id: "workflow-creative-technical",
@@ -359,7 +365,8 @@ The best performance strategy addresses both technical metrics and user percepti
     author: "Brennan K.A. Pollock",
     readingTime: "5 min read",
     categories: ["process", "workflow"],
-    excerpt: "Creating seamless workflows that honor both creative exploration and technical constraints.",
+    excerpt:
+      "Creating seamless workflows that honor both creative exploration and technical constraints.",
     content: `
 # Workflow: Bridging creative and technical processes
 
@@ -399,7 +406,7 @@ Automatically test design implementations against specifications.
 Include both designers and developers in all reviews.
 
 The goal is workflows where creative and technical thinking inform each other throughout the process.
-    `
+    `,
   },
   {
     id: "art-influence-interface-design",
@@ -409,7 +416,8 @@ The goal is workflows where creative and technical thinking inform each other th
     author: "Brennan K.A. Pollock",
     readingTime: "7 min read",
     categories: ["culture", "art"],
-    excerpt: "How art movements and museum practices inform modern interface design thinking.",
+    excerpt:
+      "How art movements and museum practices inform modern interface design thinking.",
     content: `
 # Art History: Lessons for interface designers
 
@@ -454,24 +462,27 @@ Modern interface design benefits from art historical thinking:
 4. **Experimental approaches**: Pushing beyond conventional patterns
 
 Art history provides a rich vocabulary for discussing and creating digital experiences.
-    `
-  }
+    `,
+  },
 ];
 
 // Helper function to get posts by category path
 export function getPostsByCategory(categoryPath) {
   if (!categoryPath) return blogPosts;
 
-  return blogPosts.filter(post =>
-    post.categories.some(cat => cat === categoryPath)
+  return blogPosts.filter((post) =>
+    post.categories.some((cat) => cat === categoryPath),
   );
 }
 
 // Helper function to get posts by folder and subfolder
 export function getPostsByPath(folderName, subfolderName = null) {
-  return blogPosts.filter(post => {
+  return blogPosts.filter((post) => {
     if (subfolderName) {
-      return post.categories.includes(folderName) && post.categories.includes(subfolderName);
+      return (
+        post.categories.includes(folderName) &&
+        post.categories.includes(subfolderName)
+      );
     }
     return post.categories.includes(folderName);
   });
@@ -481,7 +492,7 @@ export function getPostsByPath(folderName, subfolderName = null) {
 export function populateFileTree() {
   const tree = JSON.parse(JSON.stringify(blogFileTree)); // Deep clone
 
-  blogPosts.forEach(post => {
+  blogPosts.forEach((post) => {
     const [folder, subfolder] = post.categories;
 
     if (tree[folder] && tree[folder].children[subfolder]) {
@@ -490,7 +501,7 @@ export function populateFileTree() {
           type: "file",
           name: post.slug,
           displayName: post.title,
-          post: post
+          post: post,
         };
       }
     }
@@ -502,13 +513,13 @@ export function populateFileTree() {
 // Helper function to get all unique categories
 export function getAllCategories() {
   const categories = new Set();
-  blogPosts.forEach(post => {
-    post.categories.forEach(cat => categories.add(cat));
+  blogPosts.forEach((post) => {
+    post.categories.forEach((cat) => categories.add(cat));
   });
   return Array.from(categories);
 }
 
 // Helper function to get post by slug
 export function getPostBySlug(slug) {
-  return blogPosts.find(post => post.slug === slug);
+  return blogPosts.find((post) => post.slug === slug);
 }

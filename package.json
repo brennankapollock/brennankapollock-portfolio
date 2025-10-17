@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "biome check",
     "format": "biome format --write",
+    "setup-appwrite": "node scripts/setup-appwrite.js",
     "migrate": "node scripts/migrate-to-appwrite.js"
   },
   "dependencies": {

@@ -65,7 +65,9 @@
   margin-bottom: 0;
 }
 
-.right { position: relative; }
+.right {
+  position: relative;
+}
 
 .figure {
   position: sticky;
@@ -98,7 +100,9 @@
     grid-template-columns: 200px minmax(0, 1fr);
     gap: 2rem;
   }
-  .figure { position: static; }
+  .figure {
+    position: static;
+  }
 }
 
 @media (max-width: 768px) {

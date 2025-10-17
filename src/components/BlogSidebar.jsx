@@ -1,16 +1,20 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Image from "next/image";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { FileTree, Folder, File } from '@/components/reframe-ui/file-tree';
-import { getPostsByPath, populateFileTree } from '@/data/blogPosts';
+import { FileTree, Folder, File } from "@/components/reframe-ui/file-tree";
+import { getPostsByPath, populateFileTree } from "@/data/blogPosts";
 
 function BitmapCheckbox({ checked }) {
   return (
     <Image
-      src={checked ? '/icons/checkbox-on-bitmap.svg' : '/icons/checkbox-off-bitmap.svg'}
-      alt={checked ? 'Checked' : 'Unchecked'}
+      src={
+        checked
+          ? "/icons/checkbox-on-bitmap.svg"
+          : "/icons/checkbox-off-bitmap.svg"
+      }
+      alt={checked ? "Checked" : "Unchecked"}
       width={12}
       height={12}
       className="words-checkbox"
@@ -19,8 +23,13 @@ function BitmapCheckbox({ checked }) {
   );
 }
 
-export default function BlogSidebar({ currentCategory = null, onCategorySelect = null }) {
-  const [selectedCategories, setSelectedCategories] = useState(new Set(currentCategory ?? []));
+export default function BlogSidebar({
+  currentCategory = null,
+  onCategorySelect = null,
+}) {
+  const [selectedCategories, setSelectedCategories] = useState(
+    new Set(currentCategory ?? []),
+  );
   const pendingNotifyRef = useRef(null);
   const skipNotifyRef = useRef(false);
   const fileTree = useMemo(() => populateFileTree(), []);
@@ -39,7 +48,9 @@ export default function BlogSidebar({ currentCategory = null, onCategorySelect =
       setSelectedCategories(new Set());
       return;
     }
-    const categories = Array.isArray(currentCategory) ? currentCategory : [currentCategory];
+    const categories = Array.isArray(currentCategory)
+      ? currentCategory
+      : [currentCategory];
     skipNotifyRef.current = true;
     setSelectedCategories(new Set(categories));
   }, [currentCategory]);
@@ -78,10 +89,26 @@ export default function BlogSidebar({ currentCategory = null, onCategorySelect =
         </div>
         <FileTree
           className="words-file-tree"
-          initialExpandedItems={['topic']}
+          initialExpandedItems={["topic"]}
           indicator={false}
-          openIcon={<Image src="/icons/folder-open-bitmap.svg" alt="Open folder" width={16} height={12} unoptimized />}
-          closeIcon={<Image src="/icons/folder-bitmap.svg" alt="Closed folder" width={16} height={12} unoptimized />}
+          openIcon={
+            <Image
+              src="/icons/folder-open-bitmap.svg"
+              alt="Open folder"
+              width={16}
+              height={12}
+              unoptimized
+            />
+          }
+          closeIcon={
+            <Image
+              src="/icons/folder-bitmap.svg"
+              alt="Closed folder"
+              width={16}
+              height={12}
+              unoptimized
+            />
+          }
         >
           <Folder value="topic" element="Topic" className="words-folder">
             {categoryEntries.map((entry) => {
@@ -113,7 +140,13 @@ export default function BlogSidebar({ currentCategory = null, onCategorySelect =
 
         <div className="words-mobile-filter-row">
           <div className="blog-mobile-topic">
-            <Image src="/icons/folder-bitmap.svg" alt="Topic" width={18} height={14} unoptimized />
+            <Image
+              src="/icons/folder-bitmap.svg"
+              alt="Topic"
+              width={18}
+              height={14}
+              unoptimized
+            />
             <span>Topic</span>
           </div>
 
@@ -124,7 +157,7 @@ export default function BlogSidebar({ currentCategory = null, onCategorySelect =
                 <button
                   key={entry.id}
                   type="button"
-                  className={`words-chip${isSelected ? ' words-chip--active' : ''}`}
+                  className={`words-chip${isSelected ? " words-chip--active" : ""}`}
                   onClick={() => toggleCategory(entry.id)}
                 >
                   <span>{entry.label}</span>

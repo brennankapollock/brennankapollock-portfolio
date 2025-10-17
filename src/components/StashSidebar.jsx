@@ -1,10 +1,12 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { stashCategories, getAllTypes } from '@/data/stashItems';
+import { useState } from "react";
+import { stashCategories, getAllTypes } from "@/data/stashItems";
 
 export default function StashSidebar({ onFilterChange }) {
-  const [expandedSections, setExpandedSections] = useState(new Set(['category', 'type']));
+  const [expandedSections, setExpandedSections] = useState(
+    new Set(["category", "type"]),
+  );
   const [selectedCategories, setSelectedCategories] = useState(new Set());
   const [selectedTypes, setSelectedTypes] = useState(new Set());
 
@@ -30,7 +32,7 @@ export default function StashSidebar({ onFilterChange }) {
     if (onFilterChange) {
       onFilterChange({
         categories: Array.from(newSelected),
-        types: Array.from(selectedTypes)
+        types: Array.from(selectedTypes),
       });
     }
   };
@@ -47,7 +49,7 @@ export default function StashSidebar({ onFilterChange }) {
     if (onFilterChange) {
       onFilterChange({
         categories: Array.from(selectedCategories),
-        types: Array.from(newSelected)
+        types: Array.from(newSelected),
       });
     }
   };
@@ -65,16 +67,16 @@ export default function StashSidebar({ onFilterChange }) {
         <div className="filter-topic">
           <div
             className="topic-header"
-            onClick={() => toggleSection('category')}
+            onClick={() => toggleSection("category")}
           >
             <span className="topic-arrow">
-              {expandedSections.has('category') ? '▼' : '▶'}
+              {expandedSections.has("category") ? "▼" : "▶"}
             </span>
             <span className="topic-icon">📁</span>
             <span className="topic-name">Category</span>
           </div>
 
-          {expandedSections.has('category') && (
+          {expandedSections.has("category") && (
             <div className="topic-items">
               {Object.values(stashCategories).map((category) => {
                 const isSelected = selectedCategories.has(category.name);
@@ -86,7 +88,9 @@ export default function StashSidebar({ onFilterChange }) {
                       checked={isSelected}
                       onChange={() => handleCategoryToggle(category.name)}
                     />
-                    <span className="topic-item-name">{category.displayName}</span>
+                    <span className="topic-item-name">
+                      {category.displayName}
+                    </span>
                   </div>
                 );
               })}
@@ -96,22 +100,20 @@ export default function StashSidebar({ onFilterChange }) {
 
         {/* Type Filter */}
         <div className="filter-topic">
-          <div
-            className="topic-header"
-            onClick={() => toggleSection('type')}
-          >
+          <div className="topic-header" onClick={() => toggleSection("type")}>
             <span className="topic-arrow">
-              {expandedSections.has('type') ? '▼' : '▶'}
+              {expandedSections.has("type") ? "▼" : "▶"}
             </span>
             <span className="topic-icon">🔖</span>
             <span className="topic-name">Type</span>
           </div>
 
-          {expandedSections.has('type') && (
+          {expandedSections.has("type") && (
             <div className="topic-items">
               {allTypes.map((type) => {
                 const isSelected = selectedTypes.has(type);
-                const displayName = type.charAt(0).toUpperCase() + type.slice(1);
+                const displayName =
+                  type.charAt(0).toUpperCase() + type.slice(1);
                 return (
                   <div key={type} className="topic-item">
                     <input

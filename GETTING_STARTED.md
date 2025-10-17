@@ -8,19 +8,51 @@ Quick start guide to get your mobile-first CMS up and running.
 - Appwrite account (cloud.appwrite.io or self-hosted)
 - Admin email/password ready
 
-## Step 1: Set Up Appwrite (15 minutes)
+## Step 1: Set Up Appwrite (5 minutes - Automated!)
 
-Follow the detailed instructions in `APPWRITE_SETUP.md`:
+### Quick Setup (Recommended)
 
-1. Create Appwrite project
-2. Create database and collections (blogPosts, stashItems)
-3. Create storage bucket for images
-4. Create API key
-5. Create admin user
+1. **Create Appwrite Project:**
+   - Go to [cloud.appwrite.io](https://cloud.appwrite.io) (or your self-hosted instance)
+   - Create new project
+   - Copy the Project ID
 
-**Tip:** Keep your Appwrite console open in a tab - you'll need to copy several IDs.
+2. **Create API Key:**
+   - Go to Settings → API Keys
+   - Create new key with all permissions
+   - Copy the API Key
 
-## Step 2: Configure Environment (2 minutes)
+3. **Run Automated Setup:**
+   ```bash
+   npm run setup-appwrite
+   ```
+   
+   The script will prompt you for:
+   - Appwrite endpoint (defaults to cloud.appwrite.io)
+   - Project ID
+   - API Key
+   
+   It will automatically:
+   - Create database
+   - Create all collections with proper schema
+   - Create storage bucket
+   - Generate `.env.local` file
+
+4. **Create Admin User:**
+   - In Appwrite console: Auth → Users → Create User
+   - Use email/password (you'll use this to login to /admin)
+
+Done! Skip to Step 3.
+
+### Manual Setup (Alternative)
+
+If you prefer manual setup, follow the detailed instructions in `docs/APPWRITE_SETUP.md`.
+
+## Step 2: Configure Environment (Skip if using automated setup)
+
+**If you used `npm run setup-appwrite`:** Your `.env.local` is already created! Skip to Step 3.
+
+**If you did manual setup:**
 
 1. Copy the example environment file:
    ```bash

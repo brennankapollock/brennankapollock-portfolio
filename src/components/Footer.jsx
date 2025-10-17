@@ -14,7 +14,10 @@ export default function Footer() {
             <h3 className="display-xl mb-6">Get in touch</h3>
             <div className="space-y-3">
               <div>
-                <a className="link copy-lg" href="mailto:hello@brennankapollock.com">
+                <a
+                  className="link copy-lg"
+                  href="mailto:hello@brennankapollock.com"
+                >
                   hello@brennankapollock.com
                 </a>
               </div>
@@ -42,11 +45,13 @@ export default function Footer() {
           <div className="col-span-12 md:col-span-6">
             <div className="md:text-right">
               <div className="accent-green px-4 py-2 inline-block mb-4">
-                <span className="text-sm font-medium">Available for projects</span>
+                <span className="text-sm font-medium">
+                  Available for projects
+                </span>
               </div>
               <p className="text-gray-600">
-                Open to new opportunities in design and development.
-                Currently accepting projects for {currentYear + 1}.
+                Open to new opportunities in design and development. Currently
+                accepting projects for {currentYear + 1}.
               </p>
             </div>
           </div>
@@ -55,7 +60,8 @@ export default function Footer() {
         {/* Bottom row */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between pt-8 border-t border-black/5">
           <p className="text-sm text-gray-500 mb-4 md:mb-0">
-            © {currentYear} Brennan Kapollock. Portfolio built with Next.js & Tailwind.
+            © {currentYear} Brennan Kapollock. Portfolio built with Next.js &
+            Tailwind.
           </p>
           <div className="text-sm text-gray-500">
             <span className="font-mono">{currentYear}</span>

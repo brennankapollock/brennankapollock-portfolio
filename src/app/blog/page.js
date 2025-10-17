@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import BlogSidebar from '@/components/BlogSidebar';
-import BlogPostList from '@/components/BlogPostList';
+import { useState, useEffect } from "react";
+import BlogSidebar from "@/components/BlogSidebar";
+import BlogPostList from "@/components/BlogPostList";
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState([]);
@@ -19,7 +19,7 @@ export default function BlogPage() {
           currentCategory={selectedCategory}
           onCategorySelect={setSelectedCategory}
         />
-        <BlogPostList 
+        <BlogPostList
           selectedCategory={selectedCategory}
           skipAnimation={!isInitialLoad}
         />
