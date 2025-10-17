@@ -1,6 +1,7 @@
 import { getPostBySlug, blogPosts } from "@/data/blogPosts";
 import BlogPostMetadata from "@/components/BlogPostMetadata";
 import ReadingTitle from "@/components/ReadingTitle";
+import BlogPostTransition from "@/components/BlogPostTransition";
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
@@ -18,7 +19,8 @@ export default async function BlogPostPage({ params }) {
   }
 
   return (
-    <div className="blog-post-layout">
+    <BlogPostTransition>
+      <div className="blog-post-layout">
       <div className="blog-post-hero">
         <h1 className="blog-post-hero-title hero-title">{post.title}</h1>
       </div>
@@ -88,7 +90,8 @@ export default async function BlogPostPage({ params }) {
           </div>
         </main>
       </div>
-    </div>
+      </div>
+    </BlogPostTransition>
   );
 }
 
