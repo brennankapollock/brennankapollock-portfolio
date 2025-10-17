@@ -1,6 +1,6 @@
-import { getPostBySlug, blogPosts } from '@/data/blogPosts';
-import BlogPostMetadata from '@/components/BlogPostMetadata';
-import ReadingTitle from '@/components/ReadingTitle';
+import { getPostBySlug, blogPosts } from "@/data/blogPosts";
+import BlogPostMetadata from "@/components/BlogPostMetadata";
+import ReadingTitle from "@/components/ReadingTitle";
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
@@ -33,29 +33,57 @@ export default async function BlogPostPage({ params }) {
           {/* Sentinel marks the start of the article body for scroll detection */}
           <div id="reading-sentinel" className="reading-sentinel" />
           <div className="blog-post-content">
-            {post.content.split('\n').map((paragraph, index) => {
-              if (paragraph.trim() === '') return null;
+            {post.content.split("\n").map((paragraph, index) => {
+              if (paragraph.trim() === "") return null;
 
-              if (paragraph.startsWith('# ')) {
-                return <h2 key={index} className="blog-content-h1">{paragraph.replace('# ', '')}</h2>;
+              if (paragraph.startsWith("# ")) {
+                return (
+                  <h2 key={index} className="blog-content-h1">
+                    {paragraph.replace("# ", "")}
+                  </h2>
+                );
               }
-              if (paragraph.startsWith('## ')) {
-                return <h2 key={index} className="blog-content-h2">{paragraph.replace('## ', '')}</h2>;
+              if (paragraph.startsWith("## ")) {
+                return (
+                  <h2 key={index} className="blog-content-h2">
+                    {paragraph.replace("## ", "")}
+                  </h2>
+                );
               }
-              if (paragraph.startsWith('### ')) {
-                return <h3 key={index} className="blog-content-h3">{paragraph.replace('### ', '')}</h3>;
+              if (paragraph.startsWith("### ")) {
+                return (
+                  <h3 key={index} className="blog-content-h3">
+                    {paragraph.replace("### ", "")}
+                  </h3>
+                );
               }
-              if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
-                return <h4 key={index} className="blog-content-h4">{paragraph.replace(/\*\*/g, '')}</h4>;
+              if (paragraph.startsWith("**") && paragraph.endsWith("**")) {
+                return (
+                  <h4 key={index} className="blog-content-h4">
+                    {paragraph.replace(/\*\*/g, "")}
+                  </h4>
+                );
               }
-              if (paragraph.startsWith('- ')) {
-                return <li key={index} className="blog-content-li">{paragraph.replace('- ', '')}</li>;
+              if (paragraph.startsWith("- ")) {
+                return (
+                  <li key={index} className="blog-content-li">
+                    {paragraph.replace("- ", "")}
+                  </li>
+                );
               }
               if (/^\d+\./.test(paragraph)) {
-                return <li key={index} className="blog-content-li">{paragraph.replace(/^\d+\.\s/, '')}</li>;
+                return (
+                  <li key={index} className="blog-content-li">
+                    {paragraph.replace(/^\d+\.\s/, "")}
+                  </li>
+                );
               }
 
-              return <p key={index} className="blog-content-p">{paragraph}</p>;
+              return (
+                <p key={index} className="blog-content-p">
+                  {paragraph}
+                </p>
+              );
             })}
           </div>
         </main>

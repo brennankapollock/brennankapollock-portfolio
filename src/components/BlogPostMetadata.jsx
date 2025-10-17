@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
 export default function BlogPostMetadata({ post }) {
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   const shareText = encodeURIComponent(post.title);
 
   const handleShare = (platform) => {
-    let url = '';
+    let url = "";
     switch (platform) {
-      case 'twitter':
+      case "twitter":
         url = `https://twitter.com/intent/tweet?text=${shareText}&url=${encodeURIComponent(shareUrl)}`;
         break;
-      case 'linkedin':
+      case "linkedin":
         url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`;
         break;
     }
     if (url) {
-      window.open(url, '_blank', 'noopener,noreferrer');
+      window.open(url, "_blank", "noopener,noreferrer");
     }
   };
 
@@ -47,7 +47,7 @@ export default function BlogPostMetadata({ post }) {
             {post.categories.map((category, index) => (
               <span key={category} className="blog-category-tag">
                 {category}
-                {index < post.categories.length - 1 && ', '}
+                {index < post.categories.length - 1 && ", "}
               </span>
             ))}
           </div>
@@ -57,13 +57,13 @@ export default function BlogPostMetadata({ post }) {
           <div className="blog-metadata-label">SHARE:</div>
           <div className="blog-metadata-value blog-share-buttons">
             <button
-              onClick={() => handleShare('twitter')}
+              onClick={() => handleShare("twitter")}
               className="blog-share-button"
             >
               Twitter/X
             </button>
             <button
-              onClick={() => handleShare('linkedin')}
+              onClick={() => handleShare("linkedin")}
               className="blog-share-button"
             >
               LinkedIn

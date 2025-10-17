@@ -1,23 +1,40 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from "next/link";
+import Image from "next/image";
 
 export default function StashCard({ item }) {
-  const { type, title, text, author, url, imageUrl, description, source, date } = item;
+  const {
+    type,
+    title,
+    text,
+    author,
+    url,
+    imageUrl,
+    description,
+    source,
+    date,
+  } = item;
 
-  const isMusic = Array.isArray(item?.categories) && item.categories.includes('music');
-  const isBook = Array.isArray(item?.categories) && item.categories.includes('books');
+  const isMusic =
+    Array.isArray(item?.categories) && item.categories.includes("music");
+  const isBook =
+    Array.isArray(item?.categories) && item.categories.includes("books");
 
   // Base card classes with optional category modifiers
-  const baseClasses = ['stash-card', `stash-card--${type}`];
-  if (isMusic) baseClasses.push('stash-card--album');
-  if (isBook) baseClasses.push('stash-card--book');
-  const cardClasses = baseClasses.join(' ');
+  const baseClasses = ["stash-card", `stash-card--${type}`];
+  if (isMusic) baseClasses.push("stash-card--album");
+  if (isBook) baseClasses.push("stash-card--book");
+  const cardClasses = baseClasses.join(" ");
 
   // Specialized Album (Music) card
   if (isMusic) {
-    const Wrapper = url ? 'a' : 'div';
+    const Wrapper = url ? "a" : "div";
     const wrapperProps = url
-      ? { href: url, target: '_blank', rel: 'noopener noreferrer', className: cardClasses }
+      ? {
+          href: url,
+          target: "_blank",
+          rel: "noopener noreferrer",
+          className: cardClasses,
+        }
       : { className: cardClasses };
 
     return (
@@ -26,7 +43,7 @@ export default function StashCard({ item }) {
           {imageUrl ? (
             <img
               src={imageUrl}
-              alt={title || 'Album'}
+              alt={title || "Album"}
               loading="lazy"
               className="album-art"
             />
@@ -45,9 +62,14 @@ export default function StashCard({ item }) {
 
   // Specialized Book card
   if (isBook) {
-    const Wrapper = url ? 'a' : 'div';
+    const Wrapper = url ? "a" : "div";
     const wrapperProps = url
-      ? { href: url, target: '_blank', rel: 'noopener noreferrer', className: cardClasses }
+      ? {
+          href: url,
+          target: "_blank",
+          rel: "noopener noreferrer",
+          className: cardClasses,
+        }
       : { className: cardClasses };
 
     return (
@@ -57,7 +79,7 @@ export default function StashCard({ item }) {
           {imageUrl ? (
             <img
               src={imageUrl}
-              alt={title || 'Book'}
+              alt={title || "Book"}
               loading="lazy"
               className="book-art"
             />
@@ -74,14 +96,14 @@ export default function StashCard({ item }) {
   }
 
   // Image card
-  if (type === 'image') {
+  if (type === "image") {
     return (
       <div className={cardClasses}>
         {imageUrl && (
           <div className="stash-card-image">
             <img
               src={imageUrl}
-              alt={title || 'Stash item'}
+              alt={title || "Stash item"}
               loading="lazy"
               className="stash-card-img"
             />
@@ -93,9 +115,7 @@ export default function StashCard({ item }) {
             {description && (
               <p className="stash-card-description">{description}</p>
             )}
-            {source && (
-              <p className="stash-card-meta">Source: {source}</p>
-            )}
+            {source && <p className="stash-card-meta">Source: {source}</p>}
           </div>
         )}
       </div>
@@ -103,7 +123,7 @@ export default function StashCard({ item }) {
   }
 
   // Link card
-  if (type === 'link') {
+  if (type === "link") {
     return (
       <a
         href={url}
@@ -115,7 +135,7 @@ export default function StashCard({ item }) {
           <div className="stash-card-image">
             <img
               src={imageUrl}
-              alt={title || 'Link preview'}
+              alt={title || "Link preview"}
               loading="lazy"
               className="stash-card-img"
             />
@@ -129,16 +149,14 @@ export default function StashCard({ item }) {
           {description && (
             <p className="stash-card-description">{description}</p>
           )}
-          {source && (
-            <p className="stash-card-meta">{source}</p>
-          )}
+          {source && <p className="stash-card-meta">{source}</p>}
         </div>
       </a>
     );
   }
 
   // Quote card
-  if (type === 'quote') {
+  if (type === "quote") {
     return (
       <div className={cardClasses}>
         <div className="stash-card-content">
@@ -154,7 +172,7 @@ export default function StashCard({ item }) {
   }
 
   // Text card
-  if (type === 'text') {
+  if (type === "text") {
     return (
       <div className={cardClasses}>
         <div className="stash-card-content">
@@ -166,14 +184,14 @@ export default function StashCard({ item }) {
   }
 
   // Video card
-  if (type === 'video') {
+  if (type === "video") {
     return (
       <div className={cardClasses}>
         {url && (
           <div className="stash-card-video">
             <iframe
               src={url}
-              title={title || 'Video'}
+              title={title || "Video"}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen

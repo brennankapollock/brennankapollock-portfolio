@@ -1,22 +1,24 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function PageFade({ children }) {
   const pathname = usePathname();
-  const [phase, setPhase] = useState('page-fade-enter');
+  const [phase, setPhase] = useState("page-fade-enter");
 
   useEffect(() => {
-    const reduce = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduce =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
-      setPhase('');
+      setPhase("");
       return;
     }
     // Start enter animation on mount and on route change
-    setPhase('page-fade-enter');
+    setPhase("page-fade-enter");
     const id = requestAnimationFrame(() => {
-      setPhase('page-fade-enter page-fade-enter-active');
+      setPhase("page-fade-enter page-fade-enter-active");
     });
     return () => cancelAnimationFrame(id);
   }, [pathname]);

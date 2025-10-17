@@ -24,7 +24,11 @@ export default function EditorialSections({ sections, figures = {}, blurb }) {
 
   const paragraphVariants = {
     hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    },
   };
 
   return (
@@ -64,24 +68,27 @@ export default function EditorialSections({ sections, figures = {}, blurb }) {
 
             {/* Right column: sticky figure */}
             <div className={styles.right}>
-              {fig.src ? (
-                <figure className={styles.figure}>
-                  <Image
-                    src={fig.src}
-                    alt={fig.alt || ""}
-                    width={800}
-                    height={800}
-                    sizes="(max-width: 1024px) 100vw, 360px"
-                    className={styles.figureImage}
-                    priority={false}
-                  />
-                  {fig.caption ? (
-                    <figcaption className={styles.figureCaption}>{fig.caption}</figcaption>
-                  ) : null}
-                </figure>
-              ) : (
-                <div className={`${styles.figure} ${styles.figurePlaceholder}`} aria-hidden="true" />
-              )}
+              {fig.src
+                ? <figure className={styles.figure}>
+                    <Image
+                      src={fig.src}
+                      alt={fig.alt || ""}
+                      width={800}
+                      height={800}
+                      sizes="(max-width: 1024px) 100vw, 360px"
+                      className={styles.figureImage}
+                      priority={false}
+                    />
+                    {fig.caption
+                      ? <figcaption className={styles.figureCaption}>
+                          {fig.caption}
+                        </figcaption>
+                      : null}
+                  </figure>
+                : <div
+                    className={`${styles.figure} ${styles.figurePlaceholder}`}
+                    aria-hidden="true"
+                  />}
             </div>
           </motion.section>
         );

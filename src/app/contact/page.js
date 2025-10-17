@@ -8,9 +8,7 @@ export default function ContactPage() {
       {/* Main Title */}
       <div className="museum-hero">
         <h1 className="museum-main-title">GET IN TOUCH</h1>
-        <p className="museum-tagline">
-          LET'S BUILD SOMETHING TOGETHER
-        </p>
+        <p className="museum-tagline">LET'S BUILD SOMETHING TOGETHER</p>
       </div>
 
       {/* Separator */}
@@ -28,8 +26,8 @@ export default function ContactPage() {
               hello@brennankapollock.com
             </a>
             <p className="contact-description">
-              Best for project inquiries, collaborations, and detailed discussions.
-              Response within 24 hours.
+              Best for project inquiries, collaborations, and detailed
+              discussions. Response within 24 hours.
             </p>
           </div>
 
@@ -84,11 +82,15 @@ export default function ContactPage() {
             <div className="contact-status">
               <div className="contact-status-item">
                 <span className="contact-status-indicator contact-status-indicator--active"></span>
-                <span className="contact-status-text">Available for new projects</span>
+                <span className="contact-status-text">
+                  Available for new projects
+                </span>
               </div>
               <div className="contact-status-item">
                 <span className="contact-status-indicator contact-status-indicator--limited"></span>
-                <span className="contact-status-text">Limited consulting slots for 2025</span>
+                <span className="contact-status-text">
+                  Limited consulting slots for 2025
+                </span>
               </div>
             </div>
             <p className="contact-description">

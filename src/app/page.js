@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-<div className="museum-layout">
+    <div className="museum-layout">
       {/* Main Title - Edge to Edge */}
       <div className="museum-hero">
         <h1 className="museum-main-title">BRENNAN K.A. POLLOCK</h1>
@@ -44,13 +44,13 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          
+
           {/* Mobile Card Layout */}
           <div className="museum-card-label">
             <span className="museum-card-number">01</span>
             <span>NOW BUILDING</span>
           </div>
-          
+
           <div className="museum-card-image-container">
             <Image
               src="/home-images/Image.png"
@@ -60,7 +60,7 @@ export default function HomePage() {
               sizes="100vw"
             />
           </div>
-          
+
           <Link href="/work" className="museum-card-content">
             <div className="museum-line-link-mobile">
               SUN ROT STUDIOS <span>→</span>
@@ -94,13 +94,13 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          
+
           {/* Mobile Card Layout */}
           <div className="museum-card-label">
             <span className="museum-card-number">02</span>
             <span>NOW WRITING</span>
           </div>
-          
+
           <div className="museum-card-image-container">
             <Image
               src="/home-images/sexy marvin gaye.jpg"
@@ -110,7 +110,7 @@ export default function HomePage() {
               sizes="100vw"
             />
           </div>
-          
+
           <Link href="/blog" className="museum-card-content">
             <div className="museum-line-link-mobile">
               UNDRAPED IN CLOVER <span>→</span>
@@ -144,13 +144,13 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
-          
+
           {/* Mobile Card Layout */}
           <div className="museum-card-label">
             <span className="museum-card-number">03</span>
             <span>NOW COLLECTING</span>
           </div>
-          
+
           <div className="museum-card-image-container">
             <Image
               src="/home-images/woman.png"
@@ -160,7 +160,7 @@ export default function HomePage() {
               sizes="100vw"
             />
           </div>
-          
+
           <Link href="/stash" className="museum-card-content">
             <div className="museum-line-link-mobile">
               SH*T I'M INTO & INSPIRED BY <span>→</span>

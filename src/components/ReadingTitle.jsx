@@ -9,11 +9,13 @@ export default function ReadingTitle({ title }) {
     if (typeof window === "undefined") return;
 
     const body = document.body;
-    const sentinel = document.getElementById('reading-sentinel') || document.querySelector('.blog-post-content');
-    const hero = document.querySelector('.blog-post-hero-title');
+    const sentinel =
+      document.getElementById("reading-sentinel") ||
+      document.querySelector(".blog-post-content");
+    const hero = document.querySelector(".blog-post-hero-title");
     const compact = rootRef.current;
-    const main = document.querySelector('.blog-post-main');
-    const aside = document.querySelector('.blog-post-aside');
+    const main = document.querySelector(".blog-post-main");
+    const aside = document.querySelector(".blog-post-aside");
 
     if (!sentinel || !compact) return;
 
@@ -25,13 +27,13 @@ export default function ReadingTitle({ title }) {
 
     const setState = (active) => {
       if (active) {
-        body.classList.add('is-reading');
-        compact.setAttribute('aria-hidden', 'false');
-        if (hero) hero.setAttribute('aria-hidden', 'true');
+        body.classList.add("is-reading");
+        compact.setAttribute("aria-hidden", "false");
+        if (hero) hero.setAttribute("aria-hidden", "true");
       } else {
-        body.classList.remove('is-reading');
-        compact.setAttribute('aria-hidden', 'true');
-        if (hero) hero.setAttribute('aria-hidden', 'false');
+        body.classList.remove("is-reading");
+        compact.setAttribute("aria-hidden", "true");
+        if (hero) hero.setAttribute("aria-hidden", "false");
       }
     };
 
@@ -49,17 +51,17 @@ export default function ReadingTitle({ title }) {
       if (!raf) raf = requestAnimationFrame(update);
     };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    if (main) main.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    if (main) main.addEventListener("scroll", onScroll, { passive: true });
 
     // Initialize
     update();
 
     return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
-      if (main) main.removeEventListener('scroll', onScroll);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (main) main.removeEventListener("scroll", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);

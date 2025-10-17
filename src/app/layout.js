@@ -46,6 +46,7 @@ export const metadata = {
   },
   description: "engineer and artist based in venice beach",
   icons: { icon: "/favicon.ico" },
+  manifest: "/manifest.json",
 };
 
 export const viewport = {

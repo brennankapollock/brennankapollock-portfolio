@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import StashCard from './StashCard';
+import { useState, useEffect, useRef } from "react";
+import StashCard from "./StashCard";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -28,7 +28,7 @@ export default function StashMasonry({ items }) {
     const newItems = items.slice(startIndex, endIndex);
 
     if (newItems.length > 0) {
-      setDisplayedItems(prev => [...prev, ...newItems]);
+      setDisplayedItems((prev) => [...prev, ...newItems]);
       setPage(nextPage);
     }
 
@@ -41,8 +41,8 @@ export default function StashMasonry({ items }) {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: '200px',
-      threshold: 0.1
+      rootMargin: "200px",
+      threshold: 0.1,
     };
 
     observerRef.current = new IntersectionObserver((entries) => {
