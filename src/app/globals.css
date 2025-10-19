@@ -1371,16 +1371,17 @@ body {
 
   .words-mobile-filter .blog-sidebar-header {
     display: block;
-    padding: 0 0 0.75rem;
+    padding: 0 0 1rem;
     margin: 0;
   }
 
   .words-mobile-filter .blog-sidebar-header h3 {
     display: block;
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    font-weight: 500;
     line-height: 1;
+    color: #6b7280;
   }
 
   .blog-mobile-topic {
@@ -1388,23 +1389,23 @@ body {
     align-items: center;
     gap: 0.5rem;
     font-family: var(--font-words);
-    font-size: 0.75rem;
-    font-weight: 400;
+    font-size: 0.8rem;
+    font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: none;
-    color: #000000;
+    color: #111111;
     padding: 0;
     border: none;
     margin: 0;
-    padding-right: 0.75rem;
-    border-right: 1px dotted #cbd5e1;
-    margin-right: 0.75rem;
+    padding-right: 1rem;
+    border-right: 1px solid #e2e8f0;
+    margin-right: 1rem;
     flex-shrink: 0;
   }
 
   .blog-list-header {
-    margin-bottom: 0.5rem;
-    padding: 1.25rem 0 0.75rem;
+    margin-bottom: 1rem;
+    padding: 1.5rem 0 1rem;
     border-bottom: none;
     grid-area: header;
   }
@@ -1428,18 +1429,18 @@ body {
   }
 
   .blog-main-title {
-    font-size: clamp(3.5rem, 12vw, 4rem);
+    font-size: clamp(3.5rem, 12vw, 4.5rem);
     letter-spacing: -0.02em;
     text-transform: none;
     line-height: 0.9;
-    font-weight: 400;
+    font-weight: 500;
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
   }
 
   .blog-post-count {
-    font-size: 1rem;
+    font-size: 1.125rem;
     letter-spacing: 0;
     color: #6b7280;
     text-transform: none;
@@ -1489,17 +1490,18 @@ body {
     overflow: visible;
     padding: 0;
     border-top: none;
-    border-bottom: 1px dotted #cbd5e1;
+    border-bottom: 1px solid #e2e8f0;
     margin: 0;
     max-width: 100%;
     width: 100%;
+    padding-bottom: 1rem;
   }
 
   .words-mobile-filter-row {
     display: flex;
     align-items: center;
     gap: 0;
-    padding: 0.5rem 0;
+    padding: 0.75rem 0;
     overflow-x: auto;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
@@ -1513,9 +1515,10 @@ body {
   }
 
   .words-chip {
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    padding: 0 0.85rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 0.625rem 1rem;
+    min-height: 44px;
     border: none;
     border-left: 1px solid #e2e8f0;
     background: transparent;
@@ -1524,6 +1527,9 @@ body {
     white-space: nowrap;
     flex-shrink: 0;
     border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease;
   }
 
   .words-chip:first-child {
@@ -1533,9 +1539,13 @@ body {
 
   .words-chip--active {
     background: #fef3c7;
-    font-weight: 400;
+    font-weight: 500;
     color: #000000;
     border-left: 1px solid #fbbf24;
+  }
+
+  .words-chip:active {
+    transform: scale(0.98);
   }
 
   .blog-post-list {
@@ -1594,10 +1604,10 @@ body {
 
   .words-row {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 32px;
+    grid-template-columns: minmax(0, 1fr) 36px;
     grid-template-rows: auto auto;
-    gap: 0 0.75rem;
-    padding: 1rem 0;
+    gap: 0.5rem 0.75rem;
+    padding: 1.25rem 0;
     border-bottom: 1px solid #e2e8f0;
     width: 100%;
     max-width: 100%;
@@ -1607,7 +1617,7 @@ body {
   .words-row:first-of-type {
     border-top: 1px solid #e2e8f0;
     margin-top: 0;
-    padding-top: 1rem;
+    padding-top: 1.25rem;
   }
 
   .words-row:last-child {
@@ -1629,9 +1639,9 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     letter-spacing: 0.02em;
-    color: #000000;
+    color: #111111;
     font-family: var(--font-geist-sans);
     font-weight: 400;
   }
@@ -1639,7 +1649,7 @@ body {
   .words-date-marker {
     width: 10px;
     height: 10px;
-    background: #000000;
+    background: #111111;
     border-radius: 1px;
     flex-shrink: 0;
   }
@@ -1657,10 +1667,10 @@ body {
   }
 
   .words-title {
-    font-size: 1.125rem;
-    line-height: 1.4;
+    font-size: 1.25rem;
+    line-height: 1.35;
     letter-spacing: -0.01em;
-    color: #000000;
+    color: #111111;
     font-family: var(--font-geist-sans);
     font-weight: 500;
     margin: 0;
@@ -1680,8 +1690,8 @@ body {
   .words-action {
     grid-column: 2;
     grid-row: 1 / span 2;
-    font-size: 1.75rem;
-    color: #000000;
+    font-size: 2rem;
+    color: #111111;
     display: flex;
     align-items: center;
     justify-content: center;
