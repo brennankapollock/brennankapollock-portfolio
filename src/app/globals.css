@@ -1381,7 +1381,7 @@ body {
     letter-spacing: 0.1em;
     font-weight: 500;
     line-height: 1;
-    color: #6b7280;
+    color: var(--color-muted);
   }
 
   .blog-mobile-topic {
@@ -1393,7 +1393,7 @@ body {
     font-weight: 500;
     letter-spacing: 0.05em;
     text-transform: none;
-    color: #111111;
+    color: var(--color-fg);
     padding: 0;
     border: none;
     margin: 0;
@@ -1442,7 +1442,7 @@ body {
   .blog-post-count {
     font-size: 1.125rem;
     letter-spacing: 0;
-    color: #6b7280;
+    color: var(--color-muted);
     text-transform: none;
     font-weight: 400;
     opacity: 1 !important;
@@ -1540,7 +1540,7 @@ body {
   .words-chip--active {
     background: #fef3c7;
     font-weight: 500;
-    color: #000000;
+    color: var(--color-fg);
     border-left: 1px solid #fbbf24;
   }
 
@@ -1641,7 +1641,7 @@ body {
     gap: 0.5rem;
     font-size: 0.8rem;
     letter-spacing: 0.02em;
-    color: #111111;
+    color: var(--color-fg);
     font-family: var(--font-geist-sans);
     font-weight: 400;
   }
@@ -1649,7 +1649,7 @@ body {
   .words-date-marker {
     width: 10px;
     height: 10px;
-    background: #111111;
+    background: var(--color-fg);
     border-radius: 1px;
     flex-shrink: 0;
   }
@@ -1670,7 +1670,7 @@ body {
     font-size: 1.25rem;
     line-height: 1.35;
     letter-spacing: -0.01em;
-    color: #111111;
+    color: var(--color-fg);
     font-family: var(--font-geist-sans);
     font-weight: 500;
     margin: 0;
@@ -1691,7 +1691,7 @@ body {
     grid-column: 2;
     grid-row: 1 / span 2;
     font-size: 2rem;
-    color: #111111;
+    color: var(--color-fg);
     display: flex;
     align-items: center;
     justify-content: center;
