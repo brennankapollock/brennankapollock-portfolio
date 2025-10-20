@@ -7,8 +7,9 @@ import { useMemo } from "react";
 // - Multi-select chips for categories and types
 // - Sort select
 // - Search input with clear
+// - View density toggle (compact/comfortable/spacious)
 // Controlled via `value` and `onChange`
-// value shape: { categories: string[], types: string[], sort: string, q: string }
+// value shape: { categories: string[], types: string[], sort: string, q: string, density: string }
 export default function StashToolbar({ value, onChange, itemsCount }) {
   const categories = useMemo(
     () => ["music", "books", "films", "art", "quotes"],
@@ -21,6 +22,14 @@ export default function StashToolbar({ value, onChange, itemsCount }) {
       { value: "oldest", label: "Oldest" },
       { value: "title", label: "Title A–Z" },
       { value: "type", label: "Type" },
+    ],
+    [],
+  );
+  const densityOptions = useMemo(
+    () => [
+      { value: "compact", label: "Compact", icon: "▦" },
+      { value: "comfortable", label: "Comfortable", icon: "▥" },
+      { value: "spacious", label: "Spacious", icon: "▤" },
     ],
     [],
   );
@@ -53,7 +62,17 @@ export default function StashToolbar({ value, onChange, itemsCount }) {
   };
 
   const handleClearAll = () => {
-    onChange({ categories: [], types: [], sort: "newest", q: "" });
+    onChange({
+      categories: [],
+      types: [],
+      sort: "newest",
+      q: "",
+      density: value.density || "comfortable",
+    });
+  };
+
+  const handleDensityChange = (density) => {
+    onChange({ ...value, density });
   };
 
   const hasActive =
@@ -144,6 +163,24 @@ export default function StashToolbar({ value, onChange, itemsCount }) {
                 </option>
               ))}
             </select>
+          </div>
+
+          <div className="stash-density" aria-label="View density">
+            {densityOptions.map((opt) => {
+              const selected = (value.density || "comfortable") === opt.value;
+              return (
+                <button
+                  key={opt.value}
+                  type="button"
+                  className={`stash-density-btn${selected ? " stash-density-btn--active" : ""}`}
+                  aria-pressed={selected}
+                  onClick={() => handleDensityChange(opt.value)}
+                  title={opt.label}
+                >
+                  {opt.icon}
+                </button>
+              );
+            })}
           </div>
 
           {hasActive && (

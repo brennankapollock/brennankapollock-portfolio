@@ -5,12 +5,15 @@ import StashCard from "./StashCard";
 
 const ITEMS_PER_PAGE = 12;
 
-export default function StashMasonry({ items }) {
+export default function StashMasonry({ items, density = "comfortable" }) {
   const [displayedItems, setDisplayedItems] = useState([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const observerRef = useRef(null);
   const loadMoreRef = useRef(null);
+
+  // Map density to CSS class
+  const densityClass = `stash-masonry--${density}`;
 
   // Initial load and reset when items change
   useEffect(() => {
@@ -66,9 +69,9 @@ export default function StashMasonry({ items }) {
 
   return (
     <>
-      <div className="stash-masonry">
+      <div className={`stash-masonry ${densityClass}`}>
         {displayedItems.map((item) => (
-          <StashCard key={item.id} item={item} />
+          <StashCard key={item.id} item={item} density={density} />
         ))}
       </div>
 

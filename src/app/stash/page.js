@@ -18,6 +18,7 @@ export default function StashPage() {
     types: [],
     sort: "newest",
     q: "",
+    density: "comfortable",
   });
   const [initialized, setInitialized] = useState(false);
 
@@ -40,6 +41,7 @@ export default function StashPage() {
       types: parseList("type"),
       sort: sp.get("sort") || "newest",
       q: sp.get("q") || "",
+      density: sp.get("density") || "comfortable",
     };
 
     const hasUrlState =
@@ -67,6 +69,7 @@ export default function StashPage() {
           types: [],
           sort: "newest",
           q: "",
+          density: "comfortable",
           ...persisted,
         });
       }
@@ -83,6 +86,8 @@ export default function StashPage() {
     if (ui.types.length > 0) sp.set("type", ui.types.join(","));
     if (ui.q && ui.q.trim().length > 0) sp.set("q", ui.q);
     if (ui.sort && ui.sort !== "newest") sp.set("sort", ui.sort);
+    if (ui.density && ui.density !== "comfortable")
+      sp.set("density", ui.density);
 
     const qs = sp.toString();
     router.replace(qs ? `${pathname}?${qs}` : pathname);
@@ -104,7 +109,7 @@ export default function StashPage() {
             onChange={setUi}
             itemsCount={filteredItems.length}
           />
-          <StashMasonry items={filteredItems} />
+          <StashMasonry items={filteredItems} density={ui.density} />
         </div>
       </div>
     </div>
