@@ -32,11 +32,6 @@ export default function BlogPostMetadata({ post }) {
         </div>
 
         <div className="blog-metadata-item">
-          <div className="blog-metadata-label">AUTHOR:</div>
-          <div className="blog-metadata-value">{post.author}</div>
-        </div>
-
-        <div className="blog-metadata-item">
           <div className="blog-metadata-label">READING TIME:</div>
           <div className="blog-metadata-value">{post.readingTime}</div>
         </div>

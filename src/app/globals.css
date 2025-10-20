@@ -2003,64 +2003,82 @@ body {
   font-family: var(--font-geist-sans);
   font-size: 0.75rem;
   font-weight: 600;
-  color: #6b7280;
-  margin: 0 0 1.5rem 0;
+  color: #000000;
+  margin: 0 0 0.75rem 0;
   letter-spacing: 0.05em;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #000000;
 }
 
 .blog-metadata-group {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .blog-metadata-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.875rem 0;
+  border-bottom: 1px dotted #cbd5e1;
+}
+
+.blog-metadata-item:last-child {
+  border-bottom: none;
 }
 
 .blog-metadata-label {
   font-family: var(--font-geist-sans);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
-  color: #6b7280;
+  color: #000000;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .blog-metadata-value {
-  font-family: var(--font-geist-sans);
+  font-family: var(--font-geist-mono);
   font-size: 0.875rem;
-  color: var(--color-fg);
+  color: #000000;
   line-height: 1.4;
+  text-align: right;
+  text-transform: uppercase;
 }
 
 .blog-category-tag {
-  color: var(--color-fg);
+  color: #000000;
+  display: inline-block;
 }
 
 .blog-share-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.5rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
 .blog-share-button {
-  padding: 0.5rem 1rem;
-  background: white;
-  border: 1px solid #e1e5e9;
-  border-radius: 6px;
+  padding: 0.5rem 1.25rem;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 999px;
   font-family: var(--font-geist-sans);
-  font-size: 0.875rem;
-  color: var(--color-fg);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #000000;
   cursor: pointer;
-  transition: all 200ms ease;
-  text-align: left;
+  transition: all 150ms ease;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .blog-share-button:hover {
-  background: #f3f4f6;
-  border-color: #d1d5db;
+  background: #000000;
+  color: #ffffff;
 }
 
 /* Blog Post Main Content */
@@ -2088,7 +2106,7 @@ body {
 
 .blog-post-content {
   font-family: var(--font-geist-sans);
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--color-fg);
 }
 
@@ -2129,13 +2147,17 @@ body {
 }
 
 .blog-content-p {
-  font-size: 1.0625rem; /* ~17px */
-  margin: 1rem 0;
+  font-family: var(--font-geist-sans);
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.8;
+  margin: 0 0 1.5rem 0;
   color: var(--color-fg);
 }
 
 .blog-content-li {
-  font-size: 1.0625rem; /* ~17px */
+  font-family: var(--font-geist-sans);
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.8;
   margin: 0.5rem 0;
   margin-left: 1.5rem;
   color: var(--color-fg);
@@ -2172,6 +2194,19 @@ body {
     grid-template-columns: 120px 1fr 40px;
     gap: 1rem;
   }
+
+  /* Single article layout: convert to single column */
+  .blog-post-two-col {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 2rem 3rem 2rem;
+  }
+
+  .blog-post-aside {
+    position: static;
+    margin-top: 0;
+    width: 100%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2188,6 +2223,53 @@ body {
     font-size: clamp(1rem, 4vw, 1rem);
     white-space: nowrap;
     overflow: hidden;
+  }
+
+  /* Tighter metadata spacing on mobile */
+  .blog-metadata-section h3 {
+    font-size: 0.6875rem;
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.5rem;
+  }
+
+  .blog-metadata-item {
+    padding: 0.4rem 0;
+    gap: 0.75rem;
+  }
+
+  .blog-metadata-label {
+    font-size: 0.625rem;
+  }
+
+  .blog-metadata-value {
+    font-size: 0.8125rem;
+  }
+
+  .blog-category-tag {
+    font-size: 0.8125rem;
+  }
+
+  .blog-share-buttons {
+    gap: 0.375rem;
+  }
+
+  .blog-share-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.6875rem;
+  }
+
+  /* Mobile single article layout */
+  .blog-post-hero {
+    padding: 1.5rem 1rem 1rem 1rem;
+  }
+
+  .blog-post-two-col {
+    padding: 0 1rem 2.5rem 1rem;
+    gap: 1.5rem;
+  }
+
+  .blog-post-main {
+    padding: 1.5rem 0;
   }
 
   .blog-table-header,
