@@ -2818,7 +2818,6 @@ body {
 /* Stash Page Styles */
 .stash-content {
   flex: 1;
-  padding: 2rem 3rem;
   overflow-y: auto;
 }
 
@@ -2832,15 +2831,14 @@ body {
   white-space: nowrap;
 }
 
-/* Sticky Toolbar */
+/* Sticky Toolbar - flush with top nav */
 .stash-toolbar {
   position: sticky;
   top: 0;
-  z-index: 2;
-  background: #fff;
+  z-index: 10;
+  background: var(--color-bg);
   border-bottom: 1px solid #e1e5e9;
-  margin: -0.5rem -0.5rem 1.5rem; /* slight bleed to align with content padding visually */
-  padding: 0.5rem 0.5rem;
+  padding: 1.5rem 3rem 1rem;
 }
 
 .stash-toolbar-row {
@@ -2969,174 +2967,128 @@ body {
   margin-bottom: 3rem;
 }
 
-/* Masonry Grid Layout */
+/* Masonry Grid Layout - clean and minimal with varied row heights */
 .stash-masonry {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: 280px;
   gap: 1.5rem;
+  padding: 2rem 3rem 4rem;
   grid-auto-flow: dense;
 }
 
-/* Stash Card Base Styles */
+/* Stash Card Base - minimal, image-first, text on hover */
 .stash-card {
-  background: white;
-  border: 1px solid #e1e5e9;
-  border-radius: 4px;
-  overflow: hidden;
-  transition:
-    box-shadow 160ms ease,
-    transform 160ms ease,
-    border-color 160ms ease;
-  will-change: transform, box-shadow;
-  display: flex;
-  flex-direction: column;
-  break-inside: avoid;
-}
-
-/* Album (Music) card */
-.stash-card--album .album-cover {
   position: relative;
-  width: 100%;
-  aspect-ratio: 1 / 1;
   background: #f5f5f5;
-  border: 2px solid var(--color-fg);
-  border-radius: 2px;
   overflow: hidden;
-}
-
-.stash-card--album .album-art {
+  aspect-ratio: 1 / 1;
+  cursor: pointer;
+  transition: transform 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  break-inside: avoid;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 200ms ease;
-}
-
-.stash-card--album:hover .album-art {
-  transform: scale(1.03);
-}
-
-.stash-card--album .album-art--placeholder {
-  background: repeating-linear-gradient(
-    45deg,
-    #fafafa,
-    #fafafa 10px,
-    #f0f0f0 10px,
-    #f0f0f0 20px
-  );
-}
-
-.stash-card--album .album-center-dot {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  transform: translate(-50%, -50%);
-}
-
-/* Book card */
-.stash-card--book .book-cover {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  background: #fff;
-  border: 2px solid var(--color-fg);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.stash-card--book .book-spine {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 10px;
-  background: var(--color-fg);
-}
-
-.stash-card--book .book-art {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 200ms ease;
-}
-
-.stash-card--book:hover .book-art {
-  transform: scale(1.02);
-}
-
-.stash-card--book .book-art--placeholder {
-  background: linear-gradient(135deg, #f7f7f7, #eaeaea);
 }
 
 .stash-card:hover {
-  border-color: var(--color-fg);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  transform: scale(0.98);
 }
 
-/* Image Card */
-.stash-card--image .stash-card-image,
-.stash-card--link .stash-card-image {
+/* Stash Card Animation - staggered fade-up on load */
+@keyframes stashFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stash-card-animate {
+  animation: stashFadeUp 600ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+/* Ensure animation wrapper doesn't break grid layout */
+.stash-masonry > .stash-card-animate {
+  display: block;
   position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: #f5f5f5;
 }
 
+/* Apply grid sizing to animated wrappers */
+.stash-masonry > .stash-card-animate:has(.stash-card--book),
+.stash-masonry > .stash-card-animate:has(.stash-card--film) {
+  grid-row: span 2;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .stash-card-animate {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+.stash-card--link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Card images - full bleed */
 .stash-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 300ms ease;
+  display: block;
 }
 
-.stash-card:hover .stash-card-img {
-  transform: scale(1.05);
-}
-
-/* Link Card Overlay */
-.stash-card--link {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.stash-card-link-overlay {
+/* Overlay - hidden by default, shows on hover ONLY for image/link cards */
+.stash-card-overlay {
   position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.9);
-  opacity: 0;
-  transition: opacity 200ms ease;
-}
-
-.stash-card--link:hover .stash-card-link-overlay {
-  opacity: 1;
-}
-
-.stash-card-link-icon {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-/* Card Content */
-.stash-card-content {
-  padding: 1.25rem;
-  flex: 1;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
 }
 
+/* Show overlay on hover for image and link cards */
+.stash-card--image:hover .stash-card-overlay,
+.stash-card--link:hover .stash-card-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Text-only cards (quote, text) - always show overlay, different styling */
+.stash-card--quote .stash-card-overlay,
+.stash-card--text .stash-card-overlay {
+  opacity: 1;
+  background: transparent;
+  pointer-events: auto;
+}
+
+.stash-card--quote {
+  background: #fafafa;
+}
+
+.stash-card--text {
+  background: #fff;
+}
+
+/* Card content typography */
 .stash-card-title {
   font-family: var(--font-geist-sans);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   line-height: 1.3;
   color: var(--color-fg);
@@ -3145,73 +3097,63 @@ body {
 
 .stash-card-description {
   font-family: var(--font-geist-sans);
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: 0.8rem;
+  line-height: 1.4;
   color: #6b7280;
   margin: 0;
 }
 
-.stash-card-text {
-  font-family: var(--font-geist-sans);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--color-fg);
-  margin: 0;
-}
-
-.stash-card-meta {
-  font-family: var(--font-geist-sans);
-  font-size: 0.75rem;
+.stash-card-source {
+  font-family: var(--font-geist-mono);
+  font-size: 0.7rem;
   color: #9ca3af;
   margin: 0;
   margin-top: auto;
 }
 
-/* Quote Card */
-.stash-card--quote {
-  background: #f8f9fa;
-  border: 2px solid var(--color-fg);
-  padding: 2rem 1.5rem;
-  grid-row: span 1;
+.stash-card-text {
+  font-family: var(--font-geist-sans);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-fg);
+  margin: 0;
 }
 
+/* Quote Card */
 .stash-card-quote {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 .stash-card-quote-text {
   font-family: var(--font-display), serif;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.3;
   letter-spacing: -0.01em;
   color: var(--color-fg);
-  margin: 0 0 1rem 0;
+  margin: 0;
   font-style: italic;
 }
 
 .stash-card-quote-author {
   font-family: var(--font-geist-sans);
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: #6b7280;
 }
 
-/* Text Card */
-.stash-card--text {
-  background: white;
-  grid-row: span 1;
-}
-
 /* Video Card */
 .stash-card--video {
-  grid-row: span 2;
+  aspect-ratio: 16 / 9;
 }
 
 .stash-card-video {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 100%;
   overflow: hidden;
   background: #000;
 }
@@ -3223,6 +3165,119 @@ body {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* Card Variants - Album (CD Case) */
+.stash-card--album {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
+  position: relative;
+}
+
+.stash-card--album::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stash-card-cd-spine {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.95) 100%);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.stash-card--album:hover .stash-card-cd-spine {
+  opacity: 1;
+}
+
+/* Card Variants - Book (Spine) */
+.stash-card--book {
+  aspect-ratio: 2 / 3;
+  background: linear-gradient(90deg, #e8e8e8 0%, #f5f5f5 50%, #e8e8e8 100%);
+  grid-row: span 2;
+}
+
+.stash-card-book-spine {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(240, 240, 240, 0.95) 0%, rgba(255, 255, 255, 0.9) 10%, rgba(255, 255, 255, 0.9) 90%, rgba(240, 240, 240, 0.95) 100%);
+  border-left: 2px solid rgba(0, 0, 0, 0.08);
+  border-right: 2px solid rgba(0, 0, 0, 0.08);
+  opacity: 1;
+  transition: opacity 200ms ease;
+  z-index: 1;
+}
+
+.stash-card--book:hover .stash-card-book-spine {
+  opacity: 0;
+}
+
+.stash-card-book-spine-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--font-geist-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--color-fg);
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 90%;
+  padding: 1rem 0;
+}
+
+/* Card Variants - Film (Poster) */
+.stash-card--film {
+  aspect-ratio: 2 / 3;
+  background: #000;
+  grid-row: span 2;
+  position: relative;
+}
+
+.stash-card--film .stash-card-img {
+  filter: brightness(0.95) contrast(1.05);
+}
+
+.stash-card-film-frame {
+  position: absolute;
+  inset: 0;
+  border: 12px solid rgba(0, 0, 0, 0.9);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stash-card--film::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 2;
 }
 
 /* Page Loading Overlay */
@@ -3342,44 +3397,98 @@ body {
 
 /* Empty State */
 .stash-empty-state {
-  padding: 4rem 2rem;
+  padding: 4rem 3rem;
   text-align: center;
 }
 
 .stash-empty-state p {
   font-family: var(--font-geist-sans);
-  font-size: 1rem;
-  color: #6b7280;
+  font-size: 0.9rem;
+  color: #9ca3af;
 }
 
 /* Responsive Stash Layout */
 @media (max-width: 1024px) {
   .stash-masonry {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.5rem;
+    padding: 2rem;
   }
 
-  .stash-content {
-    padding: 2rem;
+  .stash-toolbar {
+    padding: 1.25rem 2rem 0.875rem;
   }
 }
 
 @media (max-width: 768px) {
   .stash-masonry {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
+    /* Column-based masonry for staggered layout */
+    display: block;
+    column-count: 2;
+    column-gap: 1rem;
+    padding: 1rem;
   }
 
-  .stash-content {
-    padding: 1.5rem;
+  /* Prevent cards from breaking across columns */
+  .stash-masonry > .stash-card-animate {
+    display: inline-block;
+    width: 100%;
+    break-inside: avoid;
+    margin-bottom: 1rem;
   }
 
-  .stash-card-content {
+  /* Reset grid-specific rules for mobile masonry */
+  .stash-masonry > .stash-card-animate:has(.stash-card--book),
+  .stash-masonry > .stash-card-animate:has(.stash-card--film) {
+    grid-row: initial;
+  }
+
+  .stash-card-book-spine-text {
+    font-size: 0.75rem;
+  }
+
+  .stash-card-film-frame {
+    border-width: 8px;
+  }
+
+  .stash-toolbar {
+    padding: 1rem 1.5rem 0.75rem;
+  }
+
+  /* Horizontal scroll for filters */
+  .stash-toolbar-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .stash-toolbar-right {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    flex-wrap: nowrap;
+  }
+
+  .stash-toolbar-right::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
+  .stash-filters-group {
+    display: inline-flex;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    padding-bottom: 0.25rem;
+  }
+
+  .stash-card-overlay {
     padding: 1rem;
   }
 
   .stash-card-quote-text {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 }
 
