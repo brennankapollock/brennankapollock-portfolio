@@ -1,8 +1,44 @@
 export default function StashCard({ item }) {
-  const { type, title, text, author, url, imageUrl, description, source } =
-    item;
+  const {
+    type,
+    title,
+    text,
+    author,
+    url,
+    imageUrl,
+    description,
+    source,
+    subcategory,
+  } = item;
 
-  const cardClasses = ["stash-card", `stash-card--${type}`].join(" ");
+  // Determine visual variant based on subcategory
+  const getCardVariant = () => {
+    if (
+      subcategory === "albums" ||
+      subcategory === "artists" ||
+      subcategory === "performances"
+    ) {
+      return "album";
+    }
+    if (
+      subcategory === "nonfiction" ||
+      subcategory === "fiction" ||
+      subcategory === "essays"
+    ) {
+      return "book";
+    }
+    if (
+      subcategory === "title sequences" ||
+      subcategory === "directors" ||
+      subcategory === "scenes"
+    ) {
+      return "film";
+    }
+    return type; // fallback to type
+  };
+
+  const variant = getCardVariant();
+  const cardClasses = ["stash-card", `stash-card--${type}`, `stash-card--${variant}`].join(" ");
 
   // Quote card - text-only, always visible
   if (type === "quote") {
@@ -44,6 +80,12 @@ export default function StashCard({ item }) {
             className="stash-card-img"
           />
         )}
+        {variant === "album" && <div className="stash-card-cd-spine"></div>}
+        {variant === "book" && (
+          <div className="stash-card-book-spine">
+            <span className="stash-card-book-spine-text">{title}</span>
+          </div>
+        )}
         <div className="stash-card-overlay">
           {title && <h3 className="stash-card-title">{title}</h3>}
           {description && (
@@ -71,6 +113,13 @@ export default function StashCard({ item }) {
             className="stash-card-img"
           />
         )}
+        {variant === "album" && <div className="stash-card-cd-spine"></div>}
+        {variant === "book" && (
+          <div className="stash-card-book-spine">
+            <span className="stash-card-book-spine-text">{title}</span>
+          </div>
+        )}
+        {variant === "film" && <div className="stash-card-film-frame"></div>}
         <div className="stash-card-overlay">
           {title && <h3 className="stash-card-title">{title}</h3>}
           {description && (
