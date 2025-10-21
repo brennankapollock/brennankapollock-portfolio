@@ -1,7 +1,7 @@
 {
-  "name": "Portfolio Admin",
-  "short_name": "Admin",
-  "description": "Content management for portfolio",
+  "name": "Brennan Pollock CMS",
+  "short_name": "BP CMS",
+  "description": "Mobile content management for brennankapollock.com",
   "start_url": "/admin",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -12,6 +12,26 @@
       "src": "/favicon.ico",
       "sizes": "48x48",
       "type": "image/x-icon"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Quick Add",
+      "short_name": "Quick Add",
+      "description": "Quickly add content from your phone",
+      "url": "/admin/quick-add"
+    },
+    {
+      "name": "New Blog Post",
+      "short_name": "New Post",
+      "description": "Write a new blog post",
+      "url": "/admin/blog/new"
+    },
+    {
+      "name": "Add to Stash",
+      "short_name": "Stash",
+      "description": "Add a stash item",
+      "url": "/admin/stash/new"
     }
   ]
 }
