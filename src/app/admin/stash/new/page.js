@@ -116,18 +116,19 @@ export default function NewStashItem() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
-      <div className="mb-8">
+    <div className="max-w-2xl mx-auto p-4 md:p-6 pb-24">
+      <div className="mb-6 md:mb-8">
         <button
+          type="button"
           onClick={() => router.back()}
           className="text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 mb-4"
         >
           ← Back
         </button>
-        <h1 className="text-3xl font-bold">Add Stash Item</h1>
+        <h1 className="text-2xl md:text-3xl font-bold">Add Stash Item</h1>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
         {error && (
           <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded text-red-600 dark:text-red-400 text-sm">
             {error}
@@ -137,16 +138,16 @@ export default function NewStashItem() {
         {/* Type */}
         <div>
           <label className="block text-sm font-medium mb-2">Type *</label>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-3 gap-2">
             {STASH_TYPES.map((type) => (
               <button
                 key={type}
                 type="button"
                 onClick={() => setFormData((prev) => ({ ...prev, type }))}
-                className={`px-4 py-2 rounded border ${
+                className={`px-4 py-3 rounded-lg font-medium capitalize ${
                   formData.type === type
-                    ? "bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black border-neutral-900 dark:border-neutral-100"
-                    : "border-neutral-300 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-300"
+                    ? "bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black"
+                    : "bg-neutral-100 dark:bg-neutral-900 hover:bg-neutral-200 dark:hover:bg-neutral-800"
                 }`}
               >
                 {type}
@@ -167,8 +168,9 @@ export default function NewStashItem() {
             value={formData.title}
             onChange={handleChange}
             required={formData.type !== "text"}
-            className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-700 rounded bg-white dark:bg-black focus:outline-none focus:border-neutral-900 dark:focus:border-neutral-300"
+            className="w-full px-4 py-3 md:py-4 border-2 border-neutral-300 dark:border-neutral-700 rounded-lg bg-white dark:bg-black focus:outline-none focus:border-neutral-900 dark:focus:border-neutral-300 text-base"
             placeholder="Enter title..."
+            autoComplete="off"
           />
         </div>
 
@@ -331,11 +333,11 @@ export default function NewStashItem() {
         </div>
 
         {/* Submit Button */}
-        <div className="pt-4">
+        <div className="pt-4 sticky bottom-0 bg-white dark:bg-black pb-4">
           <button
             type="submit"
             disabled={submitting || formData.categories.length === 0}
-            className="w-full py-4 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black rounded font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed text-lg"
+            className="w-full py-4 md:py-5 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black rounded-lg font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed text-base md:text-lg shadow-lg"
           >
             {submitting ? "Creating..." : "Create Stash Item"}
           </button>

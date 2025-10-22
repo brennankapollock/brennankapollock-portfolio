@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { getCurrentUser } from "@/lib/appwrite/auth";
 
@@ -26,6 +26,9 @@ export default function NewBlogPost() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [autoSaving, setAutoSaving] = useState(false);
+  const [lastSaved, setLastSaved] = useState(null);
+  const autoSaveTimeout = useRef(null);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -45,7 +48,25 @@ export default function NewBlogPost() {
 
   useEffect(() => {
     checkAuth();
+    loadDraft();
   }, []);
+
+  useEffect(() => {
+    // Auto-save draft after 3 seconds of inactivity
+    if (formData.title || formData.content) {
+      if (autoSaveTimeout.current) {
+        clearTimeout(autoSaveTimeout.current);
+      }
+      autoSaveTimeout.current = setTimeout(() => {
+        saveDraft();
+      }, 3000);
+    }
+    return () => {
+      if (autoSaveTimeout.current) {
+        clearTimeout(autoSaveTimeout.current);
+      }
+    };
+  }, [formData]);
 
   async function checkAuth() {
     const result = await getCurrentUser();
@@ -54,6 +75,38 @@ export default function NewBlogPost() {
     } else {
       setLoading(false);
     }
+  }
+
+  function loadDraft() {
+    const saved = localStorage.getItem("blog_draft");
+    if (saved) {
+      try {
+        const draft = JSON.parse(saved);
+        setFormData(draft);
+        setLastSaved(new Date(localStorage.getItem("blog_draft_time")));
+      } catch (e) {
+        // Invalid draft
+      }
+    }
+  }
+
+  async function saveDraft() {
+    if (!formData.title && !formData.content) return;
+    setAutoSaving(true);
+    try {
+      localStorage.setItem("blog_draft", JSON.stringify(formData));
+      localStorage.setItem("blog_draft_time", new Date().toISOString());
+      setLastSaved(new Date());
+    } catch (e) {
+      // Ignore storage errors
+    }
+    setAutoSaving(false);
+  }
+
+  function clearDraft() {
+    localStorage.removeItem("blog_draft");
+    localStorage.removeItem("blog_draft_time");
+    setLastSaved(null);
   }
 
   function handleChange(e) {
@@ -111,6 +164,7 @@ export default function NewBlogPost() {
       }
 
       setSuccess(true);
+      clearDraft();
       setTimeout(() => {
         router.push("/admin/blog");
       }, 1500);
@@ -140,8 +194,8 @@ export default function NewBlogPost() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <div className="mb-8">
+    <div className="max-w-3xl mx-auto p-4 md:p-6">
+      <div className="mb-6 md:mb-8">
         <button
           type="button"
           onClick={() => router.back()}
@@ -149,10 +203,17 @@ export default function NewBlogPost() {
         >
           ← Back
         </button>
-        <h1 className="text-3xl font-bold">New Blog Post</h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl md:text-3xl font-bold">New Blog Post</h1>
+          {lastSaved && (
+            <span className="text-xs md:text-sm text-neutral-500">
+              {autoSaving ? "Saving..." : `Saved ${lastSaved.toLocaleTimeString()}`}
+            </span>
+          )}
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
         {error && (
           <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded text-red-600 dark:text-red-400 text-sm">
             {error}
@@ -171,8 +232,9 @@ export default function NewBlogPost() {
             value={formData.title}
             onChange={handleTitleChange}
             required
-            className="w-full px-4 py-3 border border-neutral-300 dark:border-neutral-700 rounded bg-white dark:bg-black focus:outline-none focus:border-neutral-900 dark:focus:border-neutral-300 text-lg"
+            className="w-full px-4 py-3 md:py-4 border-2 border-neutral-300 dark:border-neutral-700 rounded-lg bg-white dark:bg-black focus:outline-none focus:border-neutral-900 dark:focus:border-neutral-300 text-base md:text-lg"
             placeholder="Enter post title..."
+            autoComplete="off"
           />
         </div>
 
@@ -300,11 +362,11 @@ export default function NewBlogPost() {
         </div>
 
         {/* Submit Button */}
-        <div className="pt-4">
+        <div className="pt-4 sticky bottom-0 bg-white dark:bg-black pb-4">
           <button
             type="submit"
             disabled={submitting || formData.categories.length === 0}
-            className="w-full py-4 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black rounded font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed text-lg"
+            className="w-full py-4 md:py-5 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black rounded-lg font-bold hover:bg-neutral-800 dark:hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed text-base md:text-lg shadow-lg"
           >
             {submitting
               ? "Creating..."
