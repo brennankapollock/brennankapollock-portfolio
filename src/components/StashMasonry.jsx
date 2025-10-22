@@ -67,8 +67,14 @@ export default function StashMasonry({ items }) {
   return (
     <>
       <div className="stash-masonry">
-        {displayedItems.map((item) => (
-          <StashCard key={item.id} item={item} />
+        {displayedItems.map((item, index) => (
+          <div
+            key={item.id}
+            className="stash-card-animate"
+            style={{ animationDelay: `${index * 50}ms` }}
+          >
+            <StashCard item={item} />
+          </div>
         ))}
       </div>
 

@@ -36,7 +36,8 @@ export const stashItems = [
     type: "link",
     title: "Miles Davis — Kind of Blue (1959)",
     url: "https://en.wikipedia.org/wiki/Kind_of_Blue",
-    imageUrl: "/placeholder-stash-1.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=600&h=600&fit=crop",
     description:
       "Modal jazz landmark. Sparse structure, deep atmosphere—timeless minimal mastery.",
     categories: ["music"],
@@ -49,7 +50,8 @@ export const stashItems = [
     type: "link",
     title: "Radiohead — In Rainbows (2007)",
     url: "https://en.wikipedia.org/wiki/In_Rainbows",
-    imageUrl: "/placeholder-stash-2.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&h=600&fit=crop",
     description:
       "Textural, intimate, meticulously crafted. A masterclass in modern album design and pacing.",
     categories: ["music"],
@@ -62,7 +64,8 @@ export const stashItems = [
     type: "link",
     title: "Blade Runner (1982) — Title Sequence",
     url: "https://www.artofthetitle.com/title/blade-runner/",
-    imageUrl: "/placeholder-stash-3.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&h=600&fit=crop",
     description:
       "Monolithic typography, industrial atmosphere—proto-brutalist cinematic identity.",
     categories: ["films"],
@@ -75,7 +78,8 @@ export const stashItems = [
     type: "link",
     title: "Andrei Rublev (1966) — Tarkovsky",
     url: "https://en.wikipedia.org/wiki/Andrei_Rublev_(film)",
-    imageUrl: "/placeholder-stash-1.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=600&h=600&fit=crop",
     description:
       "Ascetic, spiritual, and monumental imagery. Slow cinema as visual architecture.",
     categories: ["films", "art"],
@@ -88,7 +92,8 @@ export const stashItems = [
     type: "link",
     title: "The Design of Everyday Things — Don Norman",
     url: "https://en.wikipedia.org/wiki/The_Design_of_Everyday_Things",
-    imageUrl: "/placeholder-stash-2.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&h=600&fit=crop",
     description:
       "UX fundamentals that outlast trends. Affordances and constraints with clarity.",
     categories: ["books"],
@@ -101,7 +106,8 @@ export const stashItems = [
     type: "link",
     title: "House of Leaves — Mark Z. Danielewski",
     url: "https://en.wikipedia.org/wiki/House_of_Leaves",
-    imageUrl: "/placeholder-stash-3.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600&h=600&fit=crop",
     description:
       "Typographic labyrinth. Brutalist book-as-object with experimental narrative.",
     categories: ["books", "art"],
@@ -114,7 +120,8 @@ export const stashItems = [
     type: "link",
     title: "Stedelijk Museum Amsterdam",
     url: "https://www.stedelijk.nl",
-    imageUrl: "/placeholder-stash-1.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1554907984-15263bfd63bd?w=600&h=600&fit=crop",
     description:
       "Museum website with bold typography and asymmetric layouts. Perfect example of brutalist web design done right.",
     categories: ["design", "editorial"],
@@ -127,7 +134,8 @@ export const stashItems = [
     type: "link",
     title: "Stripe Developer Blog",
     url: "https://stripe.com/blog/engineering",
-    imageUrl: "/placeholder-stash-2.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=600&fit=crop",
     description:
       "Technical writing with exceptional information design. Clean, organized, developer-first.",
     categories: ["design", "code"],
@@ -140,7 +148,8 @@ export const stashItems = [
     type: "link",
     title: "Cosmos: Save anything",
     url: "https://cosmos.so",
-    imageUrl: "/placeholder-stash-3.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&h=600&fit=crop",
     description:
       "Beautiful masonry gallery for collecting visual inspiration. Minimal UI, maximum content.",
     categories: ["design", "inspiration"],
@@ -153,6 +162,8 @@ export const stashItems = [
     type: "link",
     title: "Are.na: Visual Organization",
     url: "https://are.na",
+    imageUrl:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop",
     description:
       "Platform for collecting and connecting ideas. Beautiful grid system and minimal aesthetic.",
     categories: ["design", "inspiration"],
@@ -165,7 +176,8 @@ export const stashItems = [
     type: "link",
     title: "Brutalist Websites",
     url: "https://brutalistwebsites.com",
-    imageUrl: "/placeholder-stash-1.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop",
     description:
       "Curated collection of brutalist web design. Raw, honest, structural beauty.",
     categories: ["design", "inspiration"],
@@ -186,7 +198,8 @@ export const stashItems = [
     id: "swiss-style-typography",
     type: "image",
     title: "Swiss International Style",
-    imageUrl: "/placeholder-stash-2.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=600&fit=crop",
     description:
       "Examples of Swiss typography: grid systems, sans-serif typefaces, asymmetric layouts.",
     categories: ["design", "art"],
@@ -232,7 +245,8 @@ export const stashItems = [
     type: "link",
     title: "MoMA Collection Online",
     url: "https://www.moma.org/collection/",
-    imageUrl: "/placeholder-stash-3.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&h=600&fit=crop",
     description:
       "Museum of Modern Art's entire collection available online. Exceptional art database.",
     categories: ["art", "inspiration"],
@@ -286,7 +300,8 @@ export const stashItems = [
     id: "gordon-matta-clark",
     type: "image",
     title: "Gordon Matta-Clark: Building Cuts",
-    imageUrl: "/placeholder-stash-1.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=600&h=600&fit=crop",
     description:
       "Architectural artist who cut through buildings. Brutalist interventions revealing structure.",
     categories: ["art"],
@@ -331,7 +346,8 @@ export const stashItems = [
     id: "japanese-typography",
     type: "image",
     title: "Japanese Typography Examples",
-    imageUrl: "/placeholder-stash-2.jpg",
+    imageUrl:
+      "https://images.unsplash.com/photo-1528164344705-47542687000d?w=600&h=600&fit=crop",
     description:
       "Vertical and horizontal typesetting. Grid systems. Balance between tradition and modernism.",
     categories: ["design", "culture"],
