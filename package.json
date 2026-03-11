@@ -13,6 +13,7 @@
     "migrate": "node scripts/migrate-to-appwrite.js"
   },
   "dependencies": {
+    "@fontsource/unifrakturmaguntia": "^5.2.8",
     "@radix-ui/react-accordion": "^1.2.12",
     "appwrite": "^21.2.1",
     "clsx": "^2.1.1",
