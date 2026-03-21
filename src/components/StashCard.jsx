@@ -38,7 +38,11 @@ export default function StashCard({ item }) {
   };
 
   const variant = getCardVariant();
-  const cardClasses = ["stash-card", `stash-card--${type}`, `stash-card--${variant}`].join(" ");
+  const cardClasses = [
+    "stash-card",
+    `stash-card--${type}`,
+    `stash-card--${variant}`,
+  ].join(" ");
 
   // Quote card - text-only, always visible
   if (type === "quote") {

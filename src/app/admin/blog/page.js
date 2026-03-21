@@ -108,13 +108,13 @@ export default function ManageBlog() {
                             Draft
                           </span>}
                       {post.categories?.map((cat) => (
-                          <span
-                            key={cat}
-                            className="px-2 py-1 bg-neutral-100 dark:bg-neutral-900 text-xs rounded"
-                          >
-                            {cat}
-                          </span>
-                        ))}
+                        <span
+                          key={cat}
+                          className="px-2 py-1 bg-neutral-100 dark:bg-neutral-900 text-xs rounded"
+                        >
+                          {cat}
+                        </span>
+                      ))}
                     </div>
                     <h3 className="text-lg font-bold mb-1">{post.title}</h3>
                     <p className="text-neutral-600 dark:text-neutral-400 text-sm mb-2">
