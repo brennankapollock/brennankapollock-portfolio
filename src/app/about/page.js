@@ -1,10 +1,3 @@
-"use client";
-
-import RansomText from "@/components/ui/RansomText";
-import StampText from "@/components/ui/StampText";
-import ScanReveal from "@/components/ui/ScanReveal";
-import TornEdge from "@/components/ui/TornEdge";
-
 const BIO_PARAGRAPHS = [
   `i grew up in the dirt of knockemstiff, ohio. a place where the woods take care of their own, whether they should or not. i learned fast that authenticity isn't a buzzword. it's survival. people there still feel like they walked out of steinbeck novels, carrying stories no professor could stomach without choking on his own theories.`,
 
@@ -58,88 +51,51 @@ const TIMELINE = [
 export default function AboutPage() {
   return (
     <div className="about-page">
-      {/* Hero */}
-      <div className="about-hero-section">
-        <h1 className="about-hero-title type-misprint" data-text="WHO?">
-          <RansomText text="WHO?" seed={13} />
-        </h1>
-        <div className="about-hero-name type-xerox">Brennan K.A. Pollock</div>
+      {/* Header */}
+      <div className="about-header">
+        <h1 className="about-name">Brennan K.A. Pollock</h1>
+        <p className="about-role">Engineer / Artist / Maker</p>
       </div>
 
-      <TornEdge position="bottom" color="var(--color-bg-elevated)" />
-
-      {/* Profile section — magazine editorial layout */}
-      <div
-        className="about-profile"
-        style={{ background: "var(--color-bg-elevated)" }}
-      >
-        <div className="container-site">
-          <div className="about-editorial-grid">
-            {/* Sidebar facts */}
-            <aside className="about-facts">
-              {FACTS.map((fact, i) => (
-                <ScanReveal key={fact.label} delay={i * 100}>
-                  <div className="about-fact">
-                    <span className="about-fact-label">{fact.label}</span>
-                    <span className="about-fact-value">{fact.value}</span>
-                  </div>
-                </ScanReveal>
-              ))}
-            </aside>
-
-            {/* Main bio */}
-            <div className="about-bio">
-              {BIO_PARAGRAPHS.map((para, i) => (
-                <ScanReveal key={i} delay={200 + i * 80}>
-                  {i === 2 ? (
-                    <blockquote className="about-pullquote type-medieval">
-                      {para}
-                    </blockquote>
-                  ) : (
-                    <p className="about-bio-para">{para}</p>
-                  )}
-                </ScanReveal>
-              ))}
+      {/* Two column layout */}
+      <div className="about-layout">
+        {/* Sidebar */}
+        <aside className="about-sidebar">
+          {FACTS.map((fact) => (
+            <div key={fact.label} className="about-fact">
+              <span className="about-fact-label">{fact.label}</span>
+              <span className="about-fact-value">{fact.value}</span>
             </div>
-          </div>
-        </div>
-      </div>
+          ))}
 
-      <TornEdge position="top" color="var(--color-bg-elevated)" />
-
-      {/* Timeline */}
-      <div className="about-timeline-section container-site">
-        <ScanReveal>
-          <h2 className="about-section-title">
-            <StampText color="var(--color-accent-red)" rotate={-1}>
-              Timeline
-            </StampText>
-          </h2>
-        </ScanReveal>
-        <div className="about-timeline">
-          {TIMELINE.map((entry, i) => (
-            <ScanReveal key={entry.year} delay={i * 120}>
-              <div className="about-timeline-entry">
+          <div className="about-timeline">
+            {TIMELINE.map((entry) => (
+              <div key={entry.year} className="about-timeline-entry">
                 <div className="about-timeline-year">{entry.year}</div>
-                <div className="about-timeline-content">
+                <div>
                   <h3 className="about-timeline-title">{entry.title}</h3>
                   <p className="about-timeline-desc">{entry.desc}</p>
                 </div>
               </div>
-            </ScanReveal>
-          ))}
+            ))}
+          </div>
+        </aside>
+
+        {/* Bio */}
+        <div className="about-bio">
+          {BIO_PARAGRAPHS.map((para, i) =>
+            i === 2
+              ? <blockquote key={i}>{para}</blockquote>
+              : <p key={i}>{para}</p>,
+          )}
         </div>
       </div>
 
       {/* Closing */}
-      <div className="about-closing-section">
-        <div className="container-site">
-          {CLOSING_LINES.map((line, i) => (
-            <ScanReveal key={i} delay={i * 150}>
-              <p className="about-closing-line">{line}</p>
-            </ScanReveal>
-          ))}
-        </div>
+      <div className="about-closing">
+        {CLOSING_LINES.map((line, i) => (
+          <p key={i}>{line}</p>
+        ))}
       </div>
     </div>
   );
