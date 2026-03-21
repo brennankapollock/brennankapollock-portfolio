@@ -207,7 +207,9 @@ export default function NewBlogPost() {
           <h1 className="text-2xl md:text-3xl font-bold">New Blog Post</h1>
           {lastSaved && (
             <span className="text-xs md:text-sm text-neutral-500">
-              {autoSaving ? "Saving..." : `Saved ${lastSaved.toLocaleTimeString()}`}
+              {autoSaving
+                ? "Saving..."
+                : `Saved ${lastSaved.toLocaleTimeString()}`}
             </span>
           )}
         </div>

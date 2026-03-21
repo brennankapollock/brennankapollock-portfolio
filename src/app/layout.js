@@ -1,10 +1,9 @@
 import "./globals.css";
 
+import { GeistMono, GeistSans } from "geist/font";
 import localFont from "next/font/local";
-import { GeistSans, GeistMono } from "geist/font";
-
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import GrainOverlay from "@/components/ui/GrainOverlay";
 
 const printvetica = localFont({
   src: "../../public/fonts/Printvetica.otf",
@@ -34,15 +33,6 @@ const departureMono = localFont({
   display: "swap",
 });
 
-const medieval = localFont({
-  src: "../../public/fonts/UnifrakturMaguntia.woff2",
-  display: "swap",
-  variable: "--font-medieval",
-  weight: "400",
-});
-
-// geist/font exposes preset variables: --font-geist and --font-geist-mono
-// We alias them in globals.css to --font-geist-sans and --font-geist-mono
 const geistSans = GeistSans;
 const geistMono = GeistMono;
 
@@ -58,19 +48,19 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${printvetica.variable} ${geistSans.variable} ${geistMono.variable} ${departureMono.variable} ${medieval.variable}`}
+      className={`${printvetica.variable} ${geistSans.variable} ${geistMono.variable} ${departureMono.variable}`}
     >
       <body>
         <Header />
         <main id="main">{children}</main>
-        <GrainOverlay />
+        <Footer />
       </body>
     </html>
   );

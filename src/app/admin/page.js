@@ -44,7 +44,9 @@ export default function AdminDashboard() {
       {/* Header */}
       <div className="mb-6 md:mb-8 flex justify-between items-center">
         <div>
-          <h1 className="text-2xl md:text-3xl font-bold mb-2">Admin Dashboard</h1>
+          <h1 className="text-2xl md:text-3xl font-bold mb-2">
+            Admin Dashboard
+          </h1>
           {user && (
             <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400">
               Welcome, {user.email}
@@ -79,7 +81,9 @@ export default function AdminDashboard() {
           className="block p-6 md:p-8 border-2 border-neutral-300 dark:border-neutral-700 rounded-lg hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors"
         >
           <div className="text-4xl md:text-5xl mb-3 md:mb-4">📌</div>
-          <h2 className="text-xl md:text-2xl font-bold mb-1 md:mb-2">Add Stash Item</h2>
+          <h2 className="text-xl md:text-2xl font-bold mb-1 md:mb-2">
+            Add Stash Item
+          </h2>
           <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400">
             Save links, images, quotes, or notes
           </p>
@@ -90,7 +94,9 @@ export default function AdminDashboard() {
           className="block p-6 md:p-8 border-2 border-neutral-300 dark:border-neutral-700 rounded-lg hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors"
         >
           <div className="text-4xl md:text-5xl mb-3 md:mb-4">✍️</div>
-          <h2 className="text-xl md:text-2xl font-bold mb-1 md:mb-2">New Blog Post</h2>
+          <h2 className="text-xl md:text-2xl font-bold mb-1 md:mb-2">
+            New Blog Post
+          </h2>
           <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400">
             Full editor for blog articles
           </p>
@@ -103,7 +109,9 @@ export default function AdminDashboard() {
           href="/admin/stash"
           className="block p-5 md:p-6 border border-neutral-300 dark:border-neutral-700 rounded-lg hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors"
         >
-          <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">Manage Stash</h3>
+          <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">
+            Manage Stash
+          </h3>
           <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400">
             View and edit all stash items
           </p>
@@ -113,7 +121,9 @@ export default function AdminDashboard() {
           href="/admin/blog"
           className="block p-5 md:p-6 border border-neutral-300 dark:border-neutral-700 rounded-lg hover:border-neutral-900 dark:hover:border-neutral-300 transition-colors"
         >
-          <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">Manage Blog</h3>
+          <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">
+            Manage Blog
+          </h3>
           <p className="text-sm md:text-base text-neutral-600 dark:text-neutral-400">
             View and edit all blog posts
           </p>

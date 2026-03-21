@@ -254,7 +254,9 @@ export default function QuickAdd() {
             onChange={handleChange}
             required={mode === "blog"}
             className="w-full px-4 py-4 border-2 border-neutral-300 dark:border-neutral-700 rounded-lg bg-white dark:bg-black focus:outline-none focus:border-neutral-900 dark:focus:border-neutral-300 text-base"
-            placeholder={mode === "blog" ? "Enter title..." : "Optional title..."}
+            placeholder={
+              mode === "blog" ? "Enter title..." : "Optional title..."
+            }
             autoComplete="off"
           />
         </div>
@@ -262,7 +264,11 @@ export default function QuickAdd() {
         {/* Content */}
         <div>
           <label htmlFor="content" className="block text-sm font-medium mb-2">
-            {mode === "blog" ? "Content *" : formData.type === "quote" ? "Quote *" : "Note"}
+            {mode === "blog"
+              ? "Content *"
+              : formData.type === "quote"
+                ? "Quote *"
+                : "Note"}
           </label>
           <textarea
             id="content"
@@ -290,7 +296,11 @@ export default function QuickAdd() {
             disabled={submitting}
             className="w-full py-5 bg-neutral-900 dark:bg-neutral-100 text-white dark:text-black rounded-lg font-bold text-lg hover:bg-neutral-800 dark:hover:bg-neutral-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
           >
-            {submitting ? "Saving..." : mode === "blog" ? "Save Draft" : "Add to Stash"}
+            {submitting
+              ? "Saving..."
+              : mode === "blog"
+                ? "Save Draft"
+                : "Add to Stash"}
           </button>
 
           {mode === "blog" && (

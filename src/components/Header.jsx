@@ -1,38 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
 import { usePathname } from "next/navigation";
 import MobileMenu from "./MobileMenu";
 
 const LEFT_NAV = [
   { label: "WORDS", href: "/blog" },
   { label: "STASH", href: "/stash" },
-  { label: "CODE", href: "/work" },
-  { label: "WHO?", href: "/about" },
+  { label: "WORK", href: "/work" },
+  { label: "ABOUT", href: "/about" },
 ];
 
 const SOCIAL_NAV = [
-  { label: "YOUTUBE", href: "https://youtube.com/@brennankapollock" },
   { label: "GITHUB", href: "https://github.com/brennankapollock" },
-  { label: "MEETUPS", href: "https://lu.ma/brennankapollock" },
+  { label: "YOUTUBE", href: "https://youtube.com/@brennankapollock" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
   return (
-    <header className="museum-header" role="banner" aria-label="Site header">
-      <nav className="museum-nav" aria-label="Primary">
-        <div
-          className="museum-nav-group museum-nav-left"
-          aria-label="Site sections"
-        >
+    <header className="editorial-header">
+      <nav className="editorial-nav" aria-label="Primary">
+        <div className="editorial-nav-group">
           <Link
             href="/"
             aria-label="Home"
-            className="museum-nav-link museum-brand"
+            className="editorial-nav-link editorial-brand"
           >
-            [bkap]
+            BKAP
           </Link>
           {LEFT_NAV.map((item) => {
             const isActive = pathname === item.href;
@@ -41,24 +36,21 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`museum-nav-link museum-nav-link--desktop${isActive ? " museum-nav-link--active" : ""}`}
+                className={`editorial-nav-link editorial-nav-link--desktop${isActive ? " editorial-nav-link--active" : ""}`}
               >
                 {item.label}
               </Link>
             );
           })}
         </div>
-        <div
-          className="museum-nav-group museum-nav-right"
-          aria-label="Social links"
-        >
+        <div className="editorial-nav-group">
           {SOCIAL_NAV.map((item) => (
             <a
               key={item.href}
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="museum-nav-link museum-nav-link--desktop"
+              className="editorial-nav-link editorial-nav-link--desktop"
             >
               {item.label}
             </a>

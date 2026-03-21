@@ -101,7 +101,8 @@ export default function AdminLogin() {
 
         <div className="mt-6 md:mt-8 p-4 bg-neutral-100 dark:bg-neutral-900 rounded-lg">
           <p className="text-xs md:text-sm text-neutral-600 dark:text-neutral-400 text-center mb-2">
-            📱 <strong>Mobile Tip:</strong> Add to Home Screen for app-like experience
+            📱 <strong>Mobile Tip:</strong> Add to Home Screen for app-like
+            experience
           </p>
           <p className="text-xs text-neutral-500 dark:text-neutral-500 text-center">
             iOS: Share → Add to Home Screen | Android: Menu → Install App
